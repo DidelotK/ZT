@@ -1,0 +1,13 @@
+'use strict';
+
+require('dotenv').config();
+const winston = require('winston');
+const app = require('./controller/express-server.js');
+const db = require('./db-init.js');
+
+winston.level = process.env.LOG_LEVEL;
+
+app.listen(process.env.SERVER_PORT, () => {
+  db.init();
+  winston.log('info', `App on: ${process.env.SERVER_IP}`);
+});

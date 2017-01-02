@@ -1,0 +1,6 @@
+{
+	"apiUrl": "http://localhost:5002/api",
+	"loginRoute": "/login",
+	"redirectRouteAfterLogin": "/",
+	"redirectRouteAfterLogout": "/"
+}
