@@ -1,4 +1,11 @@
 .page {
 }
 .container {
+	width: 800px;
+	margin: 0 auto;
+	margin-top: 10px;
+	padding: 15px;
+}
+.title {
+	text-align: center;
 }

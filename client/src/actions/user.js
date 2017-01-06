@@ -46,11 +46,11 @@ export function loginUser(creds) {
 }
 
 export function checkAuth() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({type: CHECK_AUTH});
 
     const token = localStorage.token;
-    if (token === undefined) {
+    if (!token) {
       dispatch({
         type: CHECK_AUTH_KO
       });
@@ -80,9 +80,10 @@ export function checkAuth() {
 }
 
 export function logout() {
-  return (dispatch) => {
+  return dispatch => {
     delete localStorage.token;
     dispatch({type: LOGOUT});
     dispatch(push(CONFIG['redirectRouteAfterLogout']));
   }
 }
+

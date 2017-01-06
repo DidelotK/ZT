@@ -10,7 +10,7 @@ const self = process.env.SERVER_IP;
 const episodeSchema = new Schema({
   saison: {type: Number, required: true},
   episodeNumber: {type: Number, required: true},
-  downloadLink:  [{ type: ObjectId, ref: 'Link' }]
+  downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
 });
 
 const model = mongoose.model('Episode', episodeSchema);

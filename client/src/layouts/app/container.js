@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {logout} from '../../actions/userActions';
-import {checkAuth} from '../../actions/userActions';
+import {logout} from '../../actions/user';
+import {checkAuth} from '../../actions/user';
 
 @connect(store => {
     return {

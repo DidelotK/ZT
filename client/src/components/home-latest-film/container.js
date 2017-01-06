@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
 import View from './view';
-import {queryFilms, sortFilms} from '../../actions/filmsActions';
+import {queryFilms, sortFilms} from '../../actions/films';
 
 
 @connect(store => {

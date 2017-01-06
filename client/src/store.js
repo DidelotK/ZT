@@ -12,4 +12,4 @@ const middleware = applyMiddleware(
   thunk
 );
 
-export default createStore(reducer, middleware);
+export default createStore(reducer, middleware);;

@@ -1,12 +1,14 @@
 import axios from 'axios';
 import Qs from 'qs';
+
 import CONFIG from '../../config/default.json';
 import {
   FILMS_FETCH,
   FILMS_FULFILLED,
   FILMS_ERROR,
   FILMS_SORTING,
-  FILMS_SORTED
+  FILMS_SORTED,
+  FILMS_SORTED_FAIL
 } from '../constants/films';
 
 function filmsFetch() {
@@ -17,7 +19,7 @@ function filmsFetch() {
 
 export function queryFilms(filter) {
   return dispatch => {
-    dispatch(filmsFetch())
+    dispatch(filmsFetch());
     return axios({
       url: `${CONFIG['apiUrl']}/films`,
       timeout: 20000,
@@ -34,9 +36,10 @@ export function queryFilms(filter) {
       responseType: 'json'
     })
       .then(res => {
+        const films = res.data.data;
         dispatch({
           type: FILMS_FULFILLED,
-          payload: res.data.data
+          payload: films
         });
       })
       .catch(err => {
@@ -51,12 +54,21 @@ export function queryFilms(filter) {
 function sortingInProgress() {
   return {
     type: FILMS_SORTING
-  }
+  };
+}
+
+function sortingFail(err) {
+  return {
+    type: FILMS_SORTED_FAIL,
+    payload: err
+  };
 }
 export function sortFilms(films) {
   return dispatch => {
+    if (!films) {
+      return dispatch(sortingFail('No films'));
+    }
     dispatch(sortingInProgress());
-    console.log(films);
     films.sort((a, b) => {
       return a.attributes.addedAt < b.attributes.addedAt
     });

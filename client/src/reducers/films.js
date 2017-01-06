@@ -3,7 +3,8 @@ import {
   FILMS_FULFILLED,
   FILMS_ERROR,
   FILMS_SORTING,
-  FILMS_SORTED
+  FILMS_SORTED,
+  FILMS_SORTED_FAIL
 } from '../constants/films';
 
 const initialState = {
@@ -51,6 +52,14 @@ const films = (state = initialState, action) => {
         films: action.payload,
         isSorting: false
       };
+    }
+    case FILMS_SORTED_FAIL: {
+      return {
+        ...state,
+        films: null,
+        isSorting: false,
+        error: action.payload
+      }
     }
     default:
       return {...state};
