@@ -1,0 +1,12 @@
+.page {}
+.container {
+	padding-top: 20px;
+}
+.side-menu {
+	padding: 30px;
+	min-height: 350px;
+}
+.content {}
+.title {
+	text-align: center;
+}

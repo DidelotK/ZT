@@ -1,8 +1,8 @@
 .page {
 	padding-top: 10vh;
 	height: 80vh;
+	width: 100%;
 }
-
 .container {
 	background-color: white;
 	text-align: center;
@@ -15,4 +15,9 @@
 	-o-box-shadow: 10px 10px 5px 0px #656565;
 	box-shadow: 10px 10px 5px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
+}
+.link {
+	text-align: right;
+	font-weight: bold;
+	margin: 10px;
 }

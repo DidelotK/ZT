@@ -10,11 +10,15 @@ const ObjectId = Schema.Types.ObjectId;
 const filmSchema = new Schema({
   name: {type: String, required: true, unique: true},
   description: {type: String, default: 'NA'},
-  posterLink: {type: String},
+  posterLink: {type: String, required: true},
   productionDate: {type: Date},
   actors:  [{type: String}],
+  director: {type: String, required: true},
+  country: {type: String, required: true},
+  length: {type: Number, required: true},
+  downloadLinks:  [{type: ObjectId, ref: 'Link'}],
   addedAt: {type: Date, default: Date.now()},
-  downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
+  uploader: {type: ObjectId, ref: 'User'}
 });
 
 const model = mongoose.model('Film', filmSchema);

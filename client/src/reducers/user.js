@@ -1,18 +1,11 @@
-import {
-  LOGIN_REQUEST,
-  LOGIN_ACCEPTED,
-  LOGIN_REJECTED,
-  CHECK_AUTH,
-  CHECK_AUTH_OK,
-  CHECK_AUTH_KO,
-  LOGOUT
-} from '../constants/user';
+import * as C from '../constants/user';
 
 const initialState = {
   userInfo: null,
   userId: null,
   token: null,
   isAuthenticating: false,
+  isRegistering: false,
   isAuthenticated: false,
   error: null
 };
@@ -20,13 +13,13 @@ const initialState = {
 const user = (state = initialState, action) => {
   switch (action.type) {
     // LOGIN
-    case LOGIN_REQUEST: {
+    case C.LOGIN_REQUEST: {
       return {
         ...state,
         isAuthenticating: true
       };
     }
-    case LOGIN_ACCEPTED: {
+    case C.LOGIN_ACCEPTED: {
       return {
         ...state,
         isAuthenticating: false,
@@ -36,7 +29,7 @@ const user = (state = initialState, action) => {
         error: null
       };
     }
-    case LOGIN_REJECTED: {
+    case C.LOGIN_REJECTED: {
       return {
         ...state,
         isAuthenticating: false,
@@ -44,13 +37,13 @@ const user = (state = initialState, action) => {
       };
     }
     // AUTH
-    case CHECK_AUTH: {
+    case C.CHECK_AUTH: {
       return {
         ...state,
         isAuthenticating: true
       };
     }
-    case CHECK_AUTH_OK: {
+    case C.CHECK_AUTH_OK: {
       return {
         ...state,
         isAuthenticating: false,
@@ -60,14 +53,38 @@ const user = (state = initialState, action) => {
         error: null
       };
     }
-    case CHECK_AUTH_KO: {
+    case C.CHECK_AUTH_KO: {
       return {
         ...state,
         isAuthenticating: false
       };
     }
+    // REGISTER
+    case C.REGISTER_REQUEST: {
+      return {
+        ...state,
+        isRegistering: true
+      };
+    }
+    case C.REGISTER_ACCEPTED: {
+      return {
+        ...state,
+        isRegistering: false,
+        isAuthenticated: true,
+        userId: action.payload.accountId,
+        token: action.payload.accessToken,
+        error: null
+      };
+    }
+    case C.REGISTER_REJECTED: {
+      return {
+        ...state,
+        isRegistering: false,
+        error: action.payload
+      };
+    }
     // LOGOUT
-    case LOGOUT: {
+    case C.LOGOUT: {
       return {
         ...state,
         userInfo: null,

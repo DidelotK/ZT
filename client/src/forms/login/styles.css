@@ -1,0 +1,8 @@
+.button {
+	margin-top:30px;
+	margin-bottom: 10px;
+}
+.error {
+	color: red;
+	font-weight: bold;
+}

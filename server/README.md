@@ -10,8 +10,8 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `npm install`
+* `yarn install`
 
 ## Running / Development
 
-* `grunt`
+* `yarn start`

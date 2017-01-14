@@ -25,7 +25,7 @@ const models = {
   User: require('../model/common/users').model,
   Film: require('../model/common/films').model,
   Link: require('../model/common/links').model,
-  Serie: require('../model/common/series').model,
+  Series: require('../model/common/series').model,
   Episode: require('../model/common/episodes').model
 };
 
@@ -33,7 +33,7 @@ const registryTemplates = {
   users: require('../model/common/users').registry,
   films: require('../model/common/films').registry,
   links: require('../model/common/links').registry,
-  serie: require('../model/common/series').registry,
+  series: require('../model/common/series').registry,
   episodes: require('../model/common/episodes').registry
 };
 

@@ -1,0 +1,10 @@
+.container {
+	width: 200px;
+	margin: 0px!important;
+	padding: 0px!important;
+}
+.input {
+	display: inline-block;
+	margin-right: 5px;
+	width: 150px;
+}

@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
 import View from './view';
-import {logout} from '../../actions/user';
+import {logout} from '../../actions/user/auth';
 
-@connect((store) => {
+@connect(store => {
     return {
       user: store.user
     };

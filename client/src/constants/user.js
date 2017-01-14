@@ -6,4 +6,8 @@ export const CHECK_AUTH = 'CHECK_AUTH';
 export const CHECK_AUTH_OK = 'CHECK_AUTH_OK';
 export const CHECK_AUTH_KO = 'CHECK_AUTH_KO';
 
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const REGISTER_ACCEPTED = 'REGISTER_ACCEPTED';
+export const REGISTER_REJECTED = 'REGISTER_REJECTED';
+
 export const LOGOUT = 'LOGOUT';

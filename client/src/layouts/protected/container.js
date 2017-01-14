@@ -10,9 +10,8 @@ import Layout from './view';
     }
   }
 )
-class ProtectedContainer extends Component {
+class Container extends Component {
   componentWillMount() {
-    console.log(this.props.user.isAuthenticated);
     if (!this.props.user.isAuthenticated) {
       this.props.dispatch(push('/login'));
     }
@@ -22,4 +21,4 @@ class ProtectedContainer extends Component {
   }
 }
 
-export default ProtectedContainer;
+export default Container;

@@ -2,17 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {fetchFilm} from '../../actions/film';
+import {getFilm} from '../../actions/film/get-film';
 
-@connect(store => {
-    return {
-      film: store.film.film
-    };
-  },
+@connect(undefined,
   dispatch => {
     return {
-      fetchFilm: id => {
-        return dispatch(fetchFilm(id));
+      getFilmAction: id => {
+        return dispatch(getFilm(id));
       }
     }
   })
@@ -20,26 +16,38 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      film: null
     };
   }
-  componentWillMount() {
-    if (!this.props.routeParams || !this.props.routeParams.id) {
-      return; // TODO ERROR MESSAGE
+  componentWillReceiveProps(nextProps) {
+    const lastId = this.props.routeParams.id;
+    const newId = nextProps.routeParams.id;
+    if (this.state.loaded && lastId !== newId) {
+      this.setState({loaded: false});
+      this._loadMedia(newId);
     }
-    const id = this.props.routeParams.id;
-    return this.props.fetchFilm(id)
-      .then(() => {
-        console.log(this.props);
-        this.setState({loaded: true});
-      })
+  }
+  componentWillMount() {
+    const {id} = this.props.routeParams;
+    this._loadMedia(id);
+  }
+  _loadMedia(_id) {
+    const filter = {simple: {_id}};
+    return this.props.getFilmAction(filter)
+      .then(film => {
+        this.setState({
+          loaded: true,
+          film
+        });
+      });
   }
   render() {
     if (!this.state.loaded) {
       return null;
     }
     return (
-      <View film={this.props.film}/>
+      <View film={this.state.film}/>
     );
   }
 }

@@ -10,11 +10,11 @@ class Helper extends Component {
     const date = this.props.date;
     const formattedDate = this.convertDate(date);
     return (
-      <div>
+      <span>
         {formattedDate}
-      </div>
+      </span>
     );
   }
 }
 
-export default Helper;
+export default Helper

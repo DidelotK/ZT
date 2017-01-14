@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {logout} from '../../actions/user';
-import {checkAuth} from '../../actions/user';
+import {logout, checkAuth} from '../../actions/user/auth';
 
 @connect(store => {
     return {
@@ -19,8 +18,7 @@ import {checkAuth} from '../../actions/user';
         dispatch(logout());
       }
     }
-  }
-)
+  })
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -39,8 +37,7 @@ class Container extends Component {
       return null;
     }
     return <View children={this.props.children}
-                 location={this.props.location.pathname}
-    />
+                 location={this.props.location.pathname}/>;
   }
 }
 

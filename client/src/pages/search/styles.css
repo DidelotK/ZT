@@ -1,0 +1,23 @@
+.page {
+	margin-top: 20px;
+}
+.container {}
+.center {
+	text-align: center;
+}
+.description {
+	padding: 20px;
+	text-align: justify;
+}
+.imgTitles
+{
+	width: 80px;
+	display: inline-block !important;
+	margin-right: 10px;
+}
+.select-choice-area {
+	text-align: center;
+}
+.checkbox {
+	margin-right: 25px;
+}

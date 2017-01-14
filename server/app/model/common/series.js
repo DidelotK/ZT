@@ -8,11 +8,16 @@ const self = process.env.SERVER_IP;
 
 // eslint-disable-next-line new-cap
 const serieSchema = new Schema({
+  name: {type: String, required: true, unique: true},
   description: {type: String, default: 'NA'},
-  posterLink: {type: String},
-  productionDate: {type: Date},
+  posterLink: {type: String, required: true},
+  productionDate: {type: Date, required: true},
   actors: [{type: String}],
-  episodes: [{ type: ObjectId, ref: 'Episode' }],
+  director: {type: String, required: true},
+  country: {type: String, required: true},
+  episodes: [{type: ObjectId, ref: 'Episode'}],
+  addedAt: {type: Date, default: Date.now()},
+  uploader: {type: ObjectId, ref: 'User', required: true}
 });
 
 const model = mongoose.model('Serie', serieSchema);

@@ -1,4 +1,45 @@
-.page {
-}
+.page {}
 .container {
+    padding: 30px;
+}
+.info
+{
+    margin: 0 auto;
+    width: 450px;
+    border: 3px solid lightblue;
+    border-radius: 10px;
+    padding: 20px;
+}
+.name
+{
+    margin-bottom: 0px;
+    margin-left: 50px;
+
+}
+.files
+{
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+.texts, .userPic
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.userPic
+{
+    width: 200px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+.uploads
+{
+    width: 35%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+
 }

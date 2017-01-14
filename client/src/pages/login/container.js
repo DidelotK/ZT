@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 
-import {loginUser} from '../../actions/user';
+import {loginUser} from '../../actions/user/auth';
 import View from './view';
 
 @connect(store => {

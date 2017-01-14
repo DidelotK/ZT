@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 // eslint-disable-next-line import/no-unassigned-import
 require('mongoose-type-email');
-mongoose.Promise = require('bluebird');
+const Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 const self = process.env.SERVER_IP;
@@ -12,15 +12,16 @@ const self = process.env.SERVER_IP;
 // eslint-disable-next-line new-cap
 const userSchema = new Schema({
   email: {type: String, required: true, unique: true},
+  pseudo: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   token: {type: String}
 });
 
-const model = mongoose.model('User', userSchema);
+const Model = mongoose.model('User', userSchema);
 
 module.exports = {
   schema: userSchema,
-  model,
+  model: Model,
   registry: {
     urlTemplates: {
       self: `${self}/api/users/{id}`,
@@ -29,11 +30,26 @@ module.exports = {
   },
   actions: {
     login(email, password, token) {
-      return model.findOneAndUpdate({email, password},
-          {token}).exec();
+      return Model.findOneAndUpdate({email, password}, {token}).exec();
     },
-    getUserByToken(token) {
-      return model.findOne({token}).exec();
+    register(email, password, token) {
+      return Model.findOne({email})
+        .then(user => {
+          if (!user) {
+            const newUser = new Model({
+              email,
+              password,
+              token
+            });
+            return newUser.save();
+          }
+          return Promise.reject('Email already taken');
+        });
+    },
+    getUserByToken(token, newToken) {
+      return Model
+        .findOneAndUpdate({token}, {token: newToken}, {new: true})
+        .exec();
     }
   }
 };

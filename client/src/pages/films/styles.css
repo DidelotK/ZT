@@ -1,4 +1,5 @@
-.page {
-}
+.page {}
 .container {
+	padding: 30px;
+	padding-top: 0;
 }

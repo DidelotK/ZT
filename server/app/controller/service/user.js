@@ -16,6 +16,13 @@ module.exports = auth => {
     });
   });
 
+  router.post('/register', parseUrl, auth.register, (req, res) => {
+    res.status(200).send({
+      accountId: req.user.id,
+      accessToken: req.user.token
+    });
+  });
+
   router.post('/logout', parseUrl, auth.isAuthenticated, (req, res) => {
     req.user.token = undefined;
     req.user.save();
