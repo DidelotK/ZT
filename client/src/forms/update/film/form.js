@@ -17,7 +17,7 @@ const floatingLabelStyle = {
   form: 'update_film',
   validate,
   asyncValidate,
-  asyncBlurFields: ['ref']
+  asyncBlurFields: ['filmSelected']
 })
 @CSSModules(styles)
 class Form extends React.Component {
@@ -30,7 +30,7 @@ class Form extends React.Component {
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
-          <Field name="ref" component={AutoComplete} type="text"
+          <Field name="filmSelected" component={AutoComplete} type="text"
                  floatingLabelText="Film to update"
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
@@ -92,7 +92,7 @@ class Form extends React.Component {
           </div>
           <div>
             <Field name="actors" component={TextField} type="text"
-                   floatingLabelText="New Actors (one line per actor)"
+                   floatingLabelText="New Actors (one line per actor, 3 minimum)"
                    floatingLabelStyle={floatingLabelStyle}
                    multiLine={true}
                    fullWidth={true}

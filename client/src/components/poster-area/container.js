@@ -13,9 +13,6 @@ import View from './view';
     }
   })
 class Container extends Component {
-  isCorrectMedia(type) {
-    return type === 'film' || type === 'serie';
-  }
   setMediaPerColumn(max) {
     if (max &&
       max > 0 &&
@@ -32,21 +29,25 @@ class Container extends Component {
   }
   render() {
     const {media, typeMedia} = this.props;
-    if (!media || !media.length || !typeMedia ||
-      !this.isCorrectMedia(typeMedia)) {
-      return null;
+    if (!media || !media.length) {
+      return (
+        <div>
+          No {typeMedia}
+        </div>
+      );
     }
-
     const maxDisplay = this.setMaxDisplay(this.props.maxDisplay, media.length);
     const mediaPerColumn =
       this.setMediaPerColumn(this.props.mediaPerColumn);
 
-    return <View
-      media={media}
-      typeMedia={typeMedia}
-      maxDisplay={maxDisplay}
-      mediaPerColumn={mediaPerColumn}
-    />
+    return (
+      <View
+        media={media}
+        typeMedia={typeMedia}
+        maxDisplay={maxDisplay}
+        mediaPerColumn={mediaPerColumn}
+      />
+    );
   }
 }
 

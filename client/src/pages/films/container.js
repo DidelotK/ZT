@@ -30,11 +30,17 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
+    const {loaded} = this.state;
+    const {films} = this.props;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
     return <View
-      films={this.props.films}
+      films={films}
     />
   }
 }

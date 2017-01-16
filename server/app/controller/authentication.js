@@ -41,10 +41,10 @@ module.exports = {
       });
   },
   register(req, res, next) {
-    const {email, password} = req.body;
+    const {email, pseudo, password} = req.body;
     const token = jwt.sign({data: req.body}, process.env.TOKEN_SECRET,
       {expiresIn: process.env.TOKEN_EXPIRES});
-    dbUsers.actions.register(email, password, token)
+    dbUsers.actions.register(email, pseudo, password, token)
       .then(user => {
         req.user = user;
         next();

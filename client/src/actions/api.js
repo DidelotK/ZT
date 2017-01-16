@@ -43,8 +43,14 @@ export function updateRessource(ressourceType, data) {
   });
 }
 
-export function deleteRessource(ressourceType, data) {
-
+export function deleteRessource(ressourceType, id) {
+  return axios({
+    method: 'delete',
+    url: `${CONFIG['apiUrl']}/${ressourceType}/${id}`,
+    headers: {
+      'Content-Type': 'application/vnd.api+json'
+    }
+  });
 }
 
 export function login(creds) {

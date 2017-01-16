@@ -10,4 +10,12 @@ export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_ACCEPTED = 'REGISTER_ACCEPTED';
 export const REGISTER_REJECTED = 'REGISTER_REJECTED';
 
+export const USER_FETCH = 'USER_FETCH';
+export const USER_FULFILLED = 'USER_FULFILLED';
+export const USER_ERROR = 'USER_ERROR';
+
+export const USER_LOADING = 'USER_LOADING';
+export const USER_LOADED_OK = 'USER_LOADED_OK';
+export const USER_LOADED_KO = 'USER_LOADED_KO';
+
 export const LOGOUT = 'LOGOUT';

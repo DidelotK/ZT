@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {reset} from 'redux-form';
 
 import View from './view';
-import {createSerie} from '../../../actions/serie/get-serie';
+import {createSerie} from '../../../actions/series/create-serie';
 
-@connect(null,
+@connect(undefined,
   dispatch => {
     return {
-      createSerie: serie => {
+      createSerieAction: serie => {
         dispatch(createSerie(serie));
         dispatch(reset('add_serie'));
       }
@@ -16,7 +16,7 @@ import {createSerie} from '../../../actions/serie/get-serie';
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.createSerie}/>;
+    return <View onSubmit={this.props.createSerieAction}/>;
   }
 }
 

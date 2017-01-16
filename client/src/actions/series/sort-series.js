@@ -22,8 +22,8 @@ export function sortSeries(series) {
       return (a.addedAt >= b.addedAt)
     }).reverse();
     dispatch({
-      type: C.SERIES_SORTED,
-      payload: series
+      type: C.SERIES_SORTED
     });
+    return series;
   }
 }

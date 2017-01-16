@@ -32,12 +32,13 @@ module.exports = {
     login(email, password, token) {
       return Model.findOneAndUpdate({email, password}, {token}).exec();
     },
-    register(email, password, token) {
+    register(email, pseudo, password, token) {
       return Model.findOne({email})
         .then(user => {
           if (!user) {
             const newUser = new Model({
               email,
+              pseudo,
               password,
               token
             });

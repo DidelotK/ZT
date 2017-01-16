@@ -17,8 +17,22 @@ export const SerieSerializer = {
         'actors',
         'country',
         'addedAt',
-        'list-episodes'
-      ]
+        'list-episodes',
+        'episodes',
+        'uploader'
+      ],
+      typeForAttribute: function (attribute, data) {
+        // sometimes this returns undefined
+        return data.customType;
+      },
+      episodes: {
+        ref: 'id',
+        included: false
+      },
+      uploader: {
+        ref: 'id',
+        included: false
+      }
     }).serialize(data);
   },
   deserialize(data) {

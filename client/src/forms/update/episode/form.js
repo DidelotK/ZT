@@ -13,7 +13,7 @@ const floatingLabelStyle = {
 };
 
 @reduxForm({
-  form: 'add_episode',
+  form: 'update_episode',
   validate,
 })
 @CSSModules(styles)

@@ -4,7 +4,8 @@ import Layout from './view';
 
 class Container extends Component {
   render() {
-    return <Layout children={this.props.children} user={this.props.user}/>
+    const {children, user} = this.props;
+    return <Layout children={children} user={user}/>
   }
 }
 

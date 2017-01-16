@@ -1,13 +1,29 @@
 import * as api from '../api';
-import Promise from 'bluebird';
+import * as C from '../../constants/user';
 
-export function getUsers(usersId) {
-  if (!usersId || !usersId.length) {
-    return Promise.resolve(null);
+function fetchUser() {
+  return {
+    type: C.USER_FETCH
   }
-  const filter = {id: usersId};
-  return api.getRessource('users', filter)
-    .then(res => {
-      return res.data.data;
-    });
+}
+
+export function getUser(filter) {
+  return dispatch => {
+    dispatch(fetchUser());
+    return api.getRessource('users', filter)
+      .then(res => {
+        const user = res.data.data[0];
+        dispatch({
+          type: C.USER_FULFILLED
+        });
+        return user;
+      })
+      .catch(() => {
+        dispatch({
+          type: C.USER_ERROR
+        });
+        return null;
+      });
+  }
+
 }

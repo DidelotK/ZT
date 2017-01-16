@@ -43,8 +43,13 @@ class Container extends Component {
   }
   render() {
     const {films, series, redirect} = this.props;
-    if (!this.state.loaded) {
-      return null;
+    const {loaded} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
     let media;
     if (films && series) {
@@ -60,10 +65,12 @@ class Container extends Component {
           };
         });
     }
-    return <View
-      media={media}
-      redirect={redirect}
-    />
+    return (
+      <View
+        media={media}
+        redirect={redirect}
+      />
+    );
   }
 }
 

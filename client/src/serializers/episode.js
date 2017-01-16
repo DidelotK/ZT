@@ -6,15 +6,28 @@ _Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
 
 export const EpisodeSerializer = {
   serialize(data) {
-    return new Serializer('list-episodes', {
+    return new Serializer('episodes', {
       keyForAttribute: 'camelCase',
       attributes: [
         'saison',
         'number',
         'name',
         'resume',
-        'downloadLinks'
-      ]
+        'downloadLinks',
+        'uploader'
+      ],
+      typeForAttribute: function (attribute, data) {
+        // sometimes this returns undefined
+        return data.customType;
+      },
+      downloadLinks: {
+        ref: 'id',
+        included: false
+      },
+      uploader: {
+        ref: 'id',
+        included: false
+      }
     }).serialize(data);
   },
   deserialize(data) {

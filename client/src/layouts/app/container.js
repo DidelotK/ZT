@@ -23,21 +23,29 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false
+      authChecked: false
     };
   }
   componentWillMount() {
     return this.props.checkAuth()
       .then(() => {
-        this.setState({checked: true});
+        this.setState({authChecked: true});
       })
   }
   render() {
-    if (!this.state.checked) {
-      return null;
+    const {authChecked} = this.state;
+    const {children, location} = this.props;
+    if (!authChecked) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
-    return <View children={this.props.children}
-                 location={this.props.location.pathname}/>;
+    return (
+      <View children={children}
+            location={location.pathname}/>
+    );
   }
 }
 

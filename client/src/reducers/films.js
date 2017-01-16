@@ -1,31 +1,24 @@
-import {
-  FILMS_FETCH,
-  FILMS_FULFILLED,
-  FILMS_ERROR,
-  FILMS_SORTING,
-  FILMS_SORTED,
-  FILMS_SORTED_FAIL
-} from '../constants/films';
+import * as C from '../constants/films';
 
 const initialState = {
   films: null,
-  filter: null,
   isFetching: false,
   isSorting: false,
-  isAvailable: function () {
-    return !(this.isSorting || this.isFetching);
-  }
+  isCreating: false,
+  isUpdating: false,
+  isDeleting: false
 };
 
 const films = (state = initialState, action) => {
   switch (action.type) {
-    case FILMS_FETCH: {
+    // FETCH FILMS
+    case C.FILMS_FETCH: {
       return {
         ...state,
         isFetching: true
       };
     }
-    case FILMS_FULFILLED: {
+    case C.FILMS_FULFILLED: {
       return {
         ...state,
         isFetching: false,
@@ -33,33 +26,130 @@ const films = (state = initialState, action) => {
         error: null
       };
     }
-    case FILMS_ERROR: {
+    case C.FILMS_ERROR: {
       return {
         ...state,
         isFetching: false,
         error: action.payload
       };
     }
-    case FILMS_SORTING: {
+    // SORT FILMS
+    case C.FILMS_SORTING: {
       return {
         ...state,
         isSorting: true
       };
     }
-    case FILMS_SORTED: {
+    case C.FILMS_SORTED: {
       return {
         ...state,
-        films: action.payload,
-        isSorting: false
+        isSorting: false,
+        error: null
       };
     }
-    case FILMS_SORTED_FAIL: {
+    case C.FILMS_SORTED_FAIL: {
       return {
         ...state,
-        films: null,
         isSorting: false,
         error: action.payload
       }
+    }
+    // CREATE FILM
+    case C.FILM_CREATE: {
+      return {
+        ...state,
+        isCreating: true
+      };
+    }
+    case C.FILM_CREATE_SUCCESS: {
+      const films = [...state.films, action.payload];
+      return {
+        ...state,
+        isCreating: false,
+        films,
+        error: null
+      };
+    }
+    case C.FILM_CREATE_ERROR: {
+      return {
+        ...state,
+        isCreating: false,
+        error: action.payload
+      };
+    }
+    // UPDATE FILM
+    case C.FILM_UPDATE: {
+      return {
+        ...state,
+        isUpdating: true
+      };
+    }
+    case C.FILM_UPDATE_SUCCESS: {
+      const films = state.films.map(film => {
+        if (film.id === action.payload.id) {
+          return action.payload;
+        }
+        return film;
+      });
+      return {
+        ...state,
+        films,
+        isUpdating: false,
+        error: null
+      };
+    }
+    case C.FILM_UPDATE_ERROR: {
+      return {
+        ...state,
+        isUpdating: false,
+        error: action.payload
+      };
+    }
+    // DELETE FILM
+    case C.FILM_DELETE: {
+      return {
+        ...state,
+        isDeleting: true
+      };
+    }
+    case C.FILM_DELETE_SUCCESS: {
+      const films = state.films.filter(film => {
+        return film.id !== action.payload.id;
+      });
+      return {
+        ...state,
+        films,
+        isDeleting: false,
+        error: null
+      };
+    }
+    case C.FILM_DELETE_ERROR: {
+      return {
+        ...state,
+        isDeleting: false,
+        error: action.payload
+      };
+    }
+    // FETCH FILM
+    case C.FILM_FETCH: {
+      return {
+        ...state,
+        isFetching: true
+      };
+    }
+    case C.FILM_FULFILLED: {
+      return {
+        ...state,
+        isFetching: false,
+        error: null
+      };
+    }
+    case C.FILM_ERROR: {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
     }
     default:
       return {...state};

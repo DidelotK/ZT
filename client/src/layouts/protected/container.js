@@ -12,12 +12,18 @@ import Layout from './view';
 )
 class Container extends Component {
   componentWillMount() {
-    if (!this.props.user.isAuthenticated) {
-      this.props.dispatch(push('/login'));
+    const {user, dispatch} = this.props;
+    if (!user.isAuthenticated) {
+      dispatch(push('/login'));
     }
   }
   render() {
-    return <Layout children={this.props.children} user={this.props.user}/>
+    const {children, user} = this.props;
+    return (
+      <Layout
+        children={children}
+        user={user}/>
+    );
   }
 }
 

@@ -21,7 +21,7 @@ class View extends Component {
   onNewRequest = (chosenRequest, index) => {
     const media = this.props.media[index]
     this.setState({search: ''});
-    this.props.redirect(`${media.type}/${media.id}`);
+    this.props.redirect(`/${media.type}/${media.id}`);
   };
   search = () => {
     const {search} = this.state;

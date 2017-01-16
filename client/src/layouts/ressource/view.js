@@ -3,7 +3,7 @@ import DocumentTitle from 'react-document-title';
 import CSSModules from 'react-css-modules';
 import {Grid} from 'semantic-ui-react';
 
-import SideMenu from '../../components/ressource/side-menu/container';
+import SideMenu from '../../components/side-menu/container';
 import styles from './styles.css';
 
 @CSSModules(styles)

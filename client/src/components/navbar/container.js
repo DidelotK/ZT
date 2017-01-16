@@ -22,10 +22,11 @@ import {logout} from '../../actions/user/auth';
   })
 class Container extends Component {
   render() {
-    return <View logout={this.props.logoutAction}
-                   redirect={this.props.redirect}
-                   location={this.props.location}
-                   isAuthenticated={this.props.user.isAuthenticated}/>
+    const {logoutAction, redirect, location, user} = this.props;
+    return <View logout={logoutAction}
+                   redirect={redirect}
+                   location={location}
+                   isAuthenticated={user.isAuthenticated}/>
   }
 }
 

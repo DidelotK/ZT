@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import View from './view';
-import {getSerie} from '../../actions/serie/get-serie';
+import {getSerie} from '../../actions/series/get-serie';
 
 @connect(undefined,
   dispatch => {
@@ -42,11 +42,16 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
+    const {loaded, serie} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
     return (
-      <View serie={this.state.serie}/>
+      <View serie={serie}/>
     );
   }
 }

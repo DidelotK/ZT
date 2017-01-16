@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {getFilm} from '../../actions/film/get-film';
+import {getFilm} from '../../actions/films/get-film';
 
 @connect(undefined,
   dispatch => {
@@ -43,11 +43,16 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
+    const {loaded, film} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
     return (
-      <View film={this.state.film}/>
+      <View film={film}/>
     );
   }
 }

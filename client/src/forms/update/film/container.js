@@ -9,7 +9,7 @@ import {getFilms} from '../../../actions/films/get-films';
     const selector = formValueSelector('update_film');
     return {
       isFilmSelected: selector(store, 'name') || false,
-      posterLink: selector(store, 'posterLink'),
+      posterLink: selector(store, 'posterLink') || null,
       films: store.films.films
     }
   },
@@ -35,10 +35,15 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
-    }
     const {onSubmit, films, isFilmSelected, posterLink} = this.props;
+    const {loaded} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
+    }
     return (
       <Form
         films={films}

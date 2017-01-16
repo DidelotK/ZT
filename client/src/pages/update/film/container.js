@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {reset} from 'redux-form';
 
 import View from './view';
-import {updateFilm} from '../../../actions/film/update-film';
+import {updateFilm} from '../../../actions/films/update-film';
 
 @connect(null,
   dispatch => {
@@ -16,7 +16,8 @@ import {updateFilm} from '../../../actions/film/update-film';
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.updateFilmAction}/>;
+    const {updateFilmAction} = this.props;
+    return <View onSubmit={updateFilmAction}/>;
   }
 }
 

@@ -8,7 +8,7 @@ _Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
 
 export const FilmSerializer = {
   serialize(data) {
-    return new Serializer('films', {
+    return new Serializer('film', {
       keyForAttribute: 'camelCase',
       attributes: [
         'name',
@@ -20,8 +20,21 @@ export const FilmSerializer = {
         'country',
         'length',
         'addedAt',
-        'downloadLinks'
-      ]
+        'downloadLinks',
+        'uploader'
+      ],
+      typeForAttribute: function (attribute, data) {
+        // sometimes this returns undefined
+        return data.customType;
+      },
+      downloadLinks: {
+        ref: 'id',
+        included: false
+      },
+      uploader: {
+        ref: 'id',
+        included: false
+      }
     }).serialize(data);
   },
   deserialize(data) {

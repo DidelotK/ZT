@@ -3,17 +3,15 @@ import {routerReducer} from 'react-router-redux';
 import {reducer as formReducer} from 'redux-form';
 
 import user from './user';
-import film from './film';
 import films from './films';
-import serie from './serie';
 import series from './series';
+import episodes from './episodes';
 
 const app = combineReducers({
   user,
-  film,
   films,
-  serie,
   series,
+  episodes,
   form: formReducer,
   routing: routerReducer
 });

@@ -30,6 +30,7 @@ export function getFilms() {
           type: C.FILMS_ERROR,
           payload: err.error
         });
+        return null;
       });
   }
 }

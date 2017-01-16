@@ -1,12 +1,12 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
-import {TextField} from 'redux-form-material-ui';
+import {Field, reduxForm, change} from 'redux-form';
+import {TextField, AutoComplete} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import {fullBlack} from 'material-ui/styles/colors';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
-import {validate} from './validations';
+import {validate, asyncValidate} from './validations';
 
 const floatingLabelStyle = {
   color: fullBlack
@@ -14,52 +14,65 @@ const floatingLabelStyle = {
 
 @reduxForm({
   form: 'add_episode',
-  validate
+  validate,
+  asyncValidate
 })
 @CSSModules(styles)
 class Form extends React.Component {
+  onNewRequest() {
+    const {asyncValidate} = this.props;
+    asyncValidate();
+  }
   render() {
-    const {handleSubmit} = this.props;
+    const {handleSubmit, series, isSerieSelected} = this.props;
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
-          <Field name="name" component={TextField} type="text"
-                 floatingLabelText="Title"
+          <Field name="serieSelected" component={AutoComplete} type="text"
+                 floatingLabelText="Serie to add episode"
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
+                 filter={AutoComplete.caseInsensitiveFilter}
+                 dataSource={series.map(serie => serie.name)}
+                 onNewRequest={() => this.onNewRequest()}
+                 onUpdateInput={() => this.onNewRequest()}
           />
         </div>
+        {isSerieSelected &&
         <div>
-          <Field name="serie" component={TextField} type="text"
-                 floatingLabelText="Serie"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-          />
+          <div>
+            <Field name="name" component={TextField} type="text"
+                   floatingLabelText="Name"
+                   floatingLabelStyle={floatingLabelStyle}
+                   fullWidth={true}
+            />
+          </div>
+          <div>
+            <Field name="saison" component={TextField} type="number"
+                   floatingLabelText="Saison"
+                   floatingLabelStyle={floatingLabelStyle}
+                   fullWidth={true}
+            />
+          </div>
+          <div>
+            <Field name="number" component={TextField} type="number"
+                   floatingLabelText="Number"
+                   floatingLabelStyle={floatingLabelStyle}
+                   fullWidth={true}
+            />
+          </div>
+          <div>
+            <Field name="resume" component={TextField} type="text"
+                   floatingLabelText="Resume"
+                   floatingLabelStyle={floatingLabelStyle}
+                   fullWidth={true}
+                   multiLine={true}
+                   rows={2}
+                   rowsMax={5}
+            />
+          </div>
         </div>
-        <div>
-          <Field name="saison" component={TextField} type="number"
-                 floatingLabelText="Saison"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-          />
-        </div>
-        <div>
-          <Field name="number" component={TextField} type="number"
-                 floatingLabelText="Number"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-          />
-        </div>
-        <div>
-          <Field name="description" component={TextField} type="text"
-                 floatingLabelText="Description"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 multiLine={true}
-                 rows={2}
-                 rowsMax={5}
-          />
-        </div>
+        }
         <div styleName='button'>
           <RaisedButton
             label='Create'

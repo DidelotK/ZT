@@ -23,8 +23,8 @@ export function sortFilms(films) {
       return (a.addedAt >= b.addedAt)
     }).reverse();
     dispatch({
-      type: C.FILMS_SORTED,
-      payload: films
+      type: C.FILMS_SORTED
     });
+    return films;
   }
 }

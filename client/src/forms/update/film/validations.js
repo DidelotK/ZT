@@ -1,7 +1,7 @@
 import {change} from 'redux-form';
-import {getFilm} from '../../../actions/film/get-film';
+import {getFilm} from '../../../actions/films/get-film';
 
-const resetValues = (dispatch) => {
+const resetValues = dispatch => {
   const formName = 'update_film';
   dispatch(change(formName, 'id', null));
   dispatch(change(formName, 'name', ''));
@@ -30,7 +30,7 @@ const fillForm = (dispatch, film) => {
 export const validate = values => {
   const errors = {};
   const requiredFields = [
-    'ref',
+    'filmSelected',
     'name',
     'description',
     'posterLink',
@@ -45,24 +45,32 @@ export const validate = values => {
       errors[field] = 'Required'
     }
   });
+  if (values.actors) {
+    const numberActors = values.actors.split(/\r?\n/)
+      .filter(actor => {return actor !== ''})
+      .length;
+    if (numberActors < 3) {
+      errors.actors = 'Need at least 3 actors';
+    }
+  }
   return errors;
 };
 
 export const asyncValidate = (values, dispatch) => {
-  const filter = {simple: {name: values.ref}};
+  const filter = {simple: {name: values.filmSelected}};
   const errors = {};
   return dispatch(getFilm(filter))
     .then(film => {
-      if (!film || !film.length) {
+      if (!film) {
         resetValues(dispatch);
-        errors.ref = 'No film found';
+        errors.filmSelected = 'No film found';
       } else {
         fillForm(dispatch, film);
       }
       return errors;
     })
     .catch(() => {
-      errors.ref = 'No film found';
+      errors.filmSelected = 'No film found';
       return errors;
     })
 };

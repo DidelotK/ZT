@@ -37,28 +37,42 @@ class Container extends Component {
     };
   }
   componentWillMount() {
+    let films;
+    let series;
     this.props.getFilmsAction()
       .then(() => {
         return this.props.sortFilmsActions(this.props.films);
       })
-      .then(() => {
+      .then(_films => {
+        films = _films;
         return this.props.getSeriesAction();
       })
       .then(() => {
         return this.props.sortSeriesActions(this.props.series);
       })
-      .then(() => {
-        this.setState({loaded: true});
+      .then(_series => {
+        series = _series;
+        this.setState({
+          loaded: true,
+          films,
+          series
+        });
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
+    const {loaded, films, series} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
-    return <View
-      films={this.props.films}
-      series={this.props.series}
-    />
+    return (
+      <View
+        films={films}
+        series={series}/>
+    );
   }
 }
 

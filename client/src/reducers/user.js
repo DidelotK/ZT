@@ -2,11 +2,12 @@ import * as C from '../constants/user';
 
 const initialState = {
   userInfo: null,
-  userId: null,
+  id: null,
   token: null,
   isAuthenticating: false,
   isRegistering: false,
   isAuthenticated: false,
+  isLoadingInfo: false,
   error: null
 };
 
@@ -24,7 +25,7 @@ const user = (state = initialState, action) => {
         ...state,
         isAuthenticating: false,
         isAuthenticated: true,
-        userId: action.payload.accountId,
+        id: action.payload.accountId,
         token: action.payload.accessToken,
         error: null
       };
@@ -48,7 +49,7 @@ const user = (state = initialState, action) => {
         ...state,
         isAuthenticating: false,
         isAuthenticated: true,
-        userId: action.payload.accountId,
+        id: action.payload.accountId,
         token: action.payload.accessToken,
         error: null
       };
@@ -71,7 +72,7 @@ const user = (state = initialState, action) => {
         ...state,
         isRegistering: false,
         isAuthenticated: true,
-        userId: action.payload.accountId,
+        id: action.payload.accountId,
         token: action.payload.accessToken,
         error: null
       };
@@ -80,6 +81,27 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isRegistering: false,
+        error: action.payload
+      };
+    }
+    // LOAD INFO
+    case C.USER_LOADING: {
+      return {
+        ...state,
+        isLoadingInfo: true
+      };
+    }
+    case C.USER_LOADED_OK: {
+      return {
+        ...state,
+        isLoadingInfo: false,
+        userInfo: action.payload
+      };
+    }
+    case C.USER_LOADED_KO: {
+      return {
+        ...state,
+        isLoadingInfo: false,
         error: action.payload
       };
     }

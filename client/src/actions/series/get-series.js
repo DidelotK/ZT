@@ -23,12 +23,14 @@ export function getSeries() {
           type: C.SERIES_FULFILLED,
           payload: series
         });
+        return series;
       })
       .catch(err => {
         dispatch({
           type: C.SERIES_ERROR,
           payload: err.error
         });
+        return null;
       });
   }
 }

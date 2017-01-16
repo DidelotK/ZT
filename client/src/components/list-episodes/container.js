@@ -4,7 +4,8 @@ import View from './view';
 
 class Container extends Component {
   render() {
-    return <View episodes={this.props.episodes}/>
+    const {episodes} = this.props;
+    return <View episodes={episodes}/>
   }
 }
 

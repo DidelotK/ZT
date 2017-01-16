@@ -66,10 +66,16 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
+    const {loaded} = this.state;
+    const {routeParams} = this.props;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
-    const search = this.props.routeParams.search;
+    const search = routeParams.search;
     const regex = new RegExp(`.*${search}.*`,'i');
     const films = this.props.films.filter(film => {
       return film.name.match(regex);
@@ -78,15 +84,14 @@ class Container extends Component {
       return serie.name.match(regex);
     });
     return (
-      <div key={this.props.routeParams.search}>
+      <div key={routeParams.search}>
         <View
           films={films}
-          search={this.props.routeParams.search}
+          search={routeParams.search}
           series={series}
         />
       </div>
-
-    )
+    );
   }
 }
 

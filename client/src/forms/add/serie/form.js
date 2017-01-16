@@ -1,6 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {TextField, DatePicker} from 'redux-form-material-ui';
+import {Modal, Image} from 'semantic-ui-react';
 import RaisedButton from 'material-ui/RaisedButton';
 import {fullBlack} from 'material-ui/styles/colors';
 import CSSModules from 'react-css-modules';
@@ -19,7 +20,7 @@ const floatingLabelStyle = {
 @CSSModules(styles)
 class Form extends React.Component {
   render() {
-    const {handleSubmit} = this.props;
+    const {posterLink, handleSubmit} = this.props;
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
@@ -45,6 +46,22 @@ class Form extends React.Component {
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
           />
+          {posterLink &&
+          <Modal trigger={
+            <RaisedButton
+              label='Show poster'
+              style={{'width': '25%'}}
+              backgroundColor="grey"
+              type='button'
+            />}
+                 size="small">
+            <Modal.Header>Overview</Modal.Header>
+            <Modal.Content>
+              <Image src={posterLink}
+                     fluid/>
+            </Modal.Content>
+          </Modal>
+          }
         </div>
         <div>
           <Field name="productionDate" component={DatePicker}
@@ -58,7 +75,7 @@ class Form extends React.Component {
         </div>
         <div>
           <Field name="actors" component={TextField} type="text"
-                 floatingLabelText="Actors"
+                 floatingLabelText="Actors (one line per actor, 3 minimum)"
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
                  multiLine={true}

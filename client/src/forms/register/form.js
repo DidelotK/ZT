@@ -6,7 +6,7 @@ import {fullBlack} from 'material-ui/styles/colors';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
-import {validate} from './validations';
+import {validate, asyncValidate} from './validations';
 
 const floatingLabelStyle = {
   color: fullBlack
@@ -14,7 +14,8 @@ const floatingLabelStyle = {
 
 @reduxForm({
   form: 'register',
-  validate
+  validate,
+  asyncValidate
 })
 @CSSModules(styles)
 class Form extends React.Component {
@@ -25,6 +26,12 @@ class Form extends React.Component {
         <div>
           <Field name="email" component={TextField} type="email"
                  floatingLabelText="Email"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
+        <div>
+          <Field name="pseudo" component={TextField} type="text"
+                 floatingLabelText="Pseudo"
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>

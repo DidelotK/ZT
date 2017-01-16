@@ -32,9 +32,9 @@ import UpdateFilm from './pages/update/film/container';
 import UpdateSerie from './pages/update/serie/container';
 import UpdateEpisode from './pages/update/episode/container';
 
-import RemoveFilm from './pages/remove/film/container';
-import RemoveSerie from './pages/remove/serie/container';
-import RemoveEpisode from './pages/remove/episode/container';
+import RemoveFilm from './pages/delete/film/container';
+import RemoveSerie from './pages/delete/serie/container';
+import RemoveEpisode from './pages/delete/episode/container';
 
 import _404 from './pages/404/view';
 
@@ -65,7 +65,7 @@ export default(
             <Route path="serie" component={UpdateSerie}/>
             <Route path="episode" component={UpdateEpisode}/>
           </Route>
-          <Route path="remove" component={RessourceLayout}>
+          <Route path="delete" component={RessourceLayout}>
             <Route path="film" component={RemoveFilm}/>
             <Route path="serie" component={RemoveSerie}/>
             <Route path="episode" component={RemoveEpisode}/>

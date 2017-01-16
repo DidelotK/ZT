@@ -30,10 +30,18 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
+    const {loaded} = this.state;
+    const {series} = this.props;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
-    return <View series={this.props.series}/>
+    return (
+      <View series={series}/>
+    );
   }
 }
 
