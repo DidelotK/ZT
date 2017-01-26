@@ -18,41 +18,41 @@ const floatingLabelStyle = {
 })
 @CSSModules(styles)
 class Form extends React.Component {
-  setFilmId(name) {
+  setSerieId(name) {
     const {dispatch, series} = this.props;
     if (!name || !series || !series.length) {
       return;
     }
-    const matchingFilms = series.filter(serie => {
+    const matchingSeries = series.filter(serie => {
       return serie.name === name;
     });
-    if (!matchingFilms || !matchingFilms.length) {
+    if (!matchingSeries || !matchingSeries.length) {
       dispatch(change('delete_serie', 'id', null));
       return;
     }
-    dispatch(change('delete_serie', 'id', matchingFilms[0].id));
+    dispatch(change('delete_serie', 'id', matchingSeries[0].id));
   }
   render() {
     const {handleSubmit, series} = this.props;
     return (
-      <form onSubmit={handleSubmit} styleName='form'>
+      <form onSubmit={handleSubmit} styleName="form">
         <div>
           <Field name="name" component={AutoComplete} type="text"
-                 floatingLabelText="Serie to delete"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 filter={AutoComplete.caseInsensitiveFilter}
-                 dataSource={series.map(serie => serie.name)}
-                 onNewRequest={name => this.setFilmId(name)}
-                 onUpdateInput={name => this.setFilmId(name)}
+            floatingLabelText="Serie to delete"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
+            filter={AutoComplete.caseInsensitiveFilter}
+            dataSource={series.map(serie => serie.name)}
+            onNewRequest={name => this.setSerieId(name)}
+            onUpdateInput={name => this.setSerieId(name)}
           />
         </div>
-        <div styleName='button'>
+        <div styleName="button">
           <RaisedButton
-            label='Remove'
-            style={{'width': '50%'}}
+            label="Remove"
+            style={{width: '50%'}}
             backgroundColor="grey"
-            type='submit'
+            type="submit"
           />
         </div>
       </form>

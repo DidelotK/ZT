@@ -1,29 +1,38 @@
 import * as api from '../api';
 import * as C from '../../constants/user';
 
-function fetchUser() {
+function fetchInProgress() {
   return {
     type: C.USER_FETCH
-  }
+  };
+}
+
+function fetchSuccess(user) {
+  return {
+    type: C.USER_FULFILLED,
+    payload: user
+  };
+}
+
+function fetchError(error) {
+  return {
+    type: C.USER_ERROR,
+    payload: error
+  };
 }
 
 export function getUser(filter) {
   return dispatch => {
-    dispatch(fetchUser());
+    dispatch(fetchInProgress());
     return api.getRessource('users', filter)
       .then(res => {
         const user = res.data.data[0];
-        dispatch({
-          type: C.USER_FULFILLED
-        });
+        dispatch(fetchSuccess(user));
         return user;
       })
-      .catch(() => {
-        dispatch({
-          type: C.USER_ERROR
-        });
+      .catch(err => {
+        dispatch(fetchError(err));
         return null;
       });
-  }
-
+  };
 }

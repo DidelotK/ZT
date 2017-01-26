@@ -12,7 +12,7 @@ import {deleteFilm} from '../../../actions/films/delete-film';
         dispatch(deleteFilm(form.id));
         dispatch(reset('delete_film'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

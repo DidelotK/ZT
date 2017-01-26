@@ -8,11 +8,11 @@ import {getSeries} from '../../actions/series/get-series';
 import {sortSeries} from '../../actions/series/sort-series';
 
 @connect(store => {
-    return {
-      films: store.films.films,
-      series: store.series.series
-    };
-  },
+  return {
+    films: store.films.films,
+    series: store.series.series
+  };
+},
   dispatch => {
     return {
       getFilmsAction: () => {
@@ -27,7 +27,7 @@ import {sortSeries} from '../../actions/series/sort-series';
       sortSeriesActions: series => {
         return dispatch(sortSeries(series));
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {

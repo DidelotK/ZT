@@ -13,7 +13,7 @@ class View extends Component {
         <div>
           No links
         </div>
-      )
+      );
     }
     const downloadLinks = [];
     links.forEach(link => {
@@ -25,15 +25,15 @@ class View extends Component {
           <Table.Cell>{link.uploader.pseudo}</Table.Cell>
           <Table.Cell>
             <a href={link.link}>
-              <Button color='red' size='small'>DOWNLOAD</Button>
+              <Button color="red" size="small">DOWNLOAD</Button>
             </a>
           </Table.Cell>
         </Table.Row>
       );
     });
     return (
-      <div styleName='container'>
-        <Table styleName='table_links'>
+      <div styleName="container">
+        <Table styleName="table_links">
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Language</Table.HeaderCell>
@@ -49,7 +49,7 @@ class View extends Component {
           </Table.Body>
         </Table>
       </div>
-    )
+    );
   }
 }
 export default View;

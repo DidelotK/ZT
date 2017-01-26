@@ -9,13 +9,13 @@ import styles from './styles.css';
 class View extends Component {
   render() {
     return (
-      <DocumentTitle title='Films'>
-        <div styleName='page'>
-          <div styleName='container'>
+      <DocumentTitle title="Films">
+        <div styleName="page">
+          <div styleName="container">
             <h1>Movies</h1>
             <PosterArea
               media={this.props.films}
-              typeMedia='film'
+              typeMedia="film"
               maxDisplay={20}
               mediaPerColumn={5}
             />

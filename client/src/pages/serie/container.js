@@ -9,7 +9,7 @@ import {getSerie} from '../../actions/series/get-serie';
       getSerieAction: id => {
         return dispatch(getSerie(id));
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {

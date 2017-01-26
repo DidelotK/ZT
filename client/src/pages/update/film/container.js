@@ -12,7 +12,7 @@ import {updateFilm} from '../../../actions/films/update-film';
         dispatch(updateFilm(film));
         dispatch(reset('update_film'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

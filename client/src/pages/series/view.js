@@ -9,13 +9,13 @@ import PosterArea from '../../components/poster-area/container';
 class View extends Component {
   render() {
     return (
-      <DocumentTitle title='Series'>
-        <div styleName='page'>
-          <div styleName='container'>
+      <DocumentTitle title="Series">
+        <div styleName="page">
+          <div styleName="container">
             <h1>Series</h1>
             <PosterArea
               media={this.props.series}
-              typeMedia='serie'
+              typeMedia="serie"
               maxDisplay={20}
               mediaPerColumn={5}
             />

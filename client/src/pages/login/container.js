@@ -6,16 +6,16 @@ import {loginUser} from '../../actions/user/auth';
 import View from './view';
 
 @connect(store => {
-    return {
-      user: store.user
-    }
-  },
+  return {
+    user: store.user
+  };
+},
   dispatch => {
     return {
       loginHandler: creds => {
         dispatch(loginUser(creds));
       }
-    }
+    };
   })
 class Container extends Component {
   componentWillMount() {

@@ -5,10 +5,10 @@ import View from './view';
 import {logout, checkAuth} from '../../actions/user/auth';
 
 @connect(store => {
-    return {
-      user: store.user
-    };
-  },
+  return {
+    user: store.user
+  };
+},
   dispatch => {
     return {
       checkAuth: () => {
@@ -17,7 +17,7 @@ import {logout, checkAuth} from '../../actions/user/auth';
       logoutAction: () => {
         dispatch(logout());
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Container extends Component {
     return this.props.checkAuth()
       .then(() => {
         this.setState({authChecked: true});
-      })
+      });
   }
   render() {
     const {authChecked} = this.state;
@@ -44,7 +44,7 @@ class Container extends Component {
     }
     return (
       <View children={children}
-            location={location.pathname}/>
+        location={location.pathname}/>
     );
   }
 }

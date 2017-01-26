@@ -22,14 +22,14 @@ class Form extends React.Component {
       <form onSubmit={handleSubmit}>
         <div>
           <Field name="email" component={TextField} type="text"
-                 floatingLabelText="Email"
-                 floatingLabelStyle={floatingLabelStyle}
+            floatingLabelText="Email"
+            floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         <div>
           <Field name="password" component={TextField} type="password"
-                 floatingLabelText="Password"
-                 floatingLabelStyle={floatingLabelStyle}
+            floatingLabelText="Password"
+            floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         {user.error &&
@@ -37,13 +37,13 @@ class Form extends React.Component {
           {user.error}
         </div>
         }
-        <div styleName='button'>
+        <div styleName="button">
           <RaisedButton
-            label='Login'
+            label="Login"
             labelColor="white"
-            style={ {'width': '50%'} }
+            style={ {width: '50%'} }
             backgroundColor="green"
-            type='submit'
+            type="submit"
           />
         </div>
       </form>

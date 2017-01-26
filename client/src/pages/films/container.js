@@ -5,16 +5,16 @@ import View from './view';
 import {getFilms} from '../../actions/films/get-films';
 
 @connect(store => {
-    return {
-      films: store.films.films
-    };
-  },
+  return {
+    films: store.films.films
+  };
+},
   dispatch => {
     return {
       getFilmsAction: () => {
         return dispatch(getFilms());
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class Container extends Component {
     }
     return <View
       films={films}
-    />
+    />;
   }
 }
 

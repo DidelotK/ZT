@@ -12,7 +12,7 @@ import {updateSerie} from '../../../actions/series/update-serie';
         dispatch(updateSerie(serie));
         dispatch(reset('update_serie'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

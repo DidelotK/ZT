@@ -9,7 +9,7 @@ class View extends Component {
   render() {
     const {onSubmit} = this.props;
     return (
-      <div styleName='container'>
+      <div styleName="container">
         <RemoveSerieForm onSubmit={onSubmit}/>
       </div>
     );

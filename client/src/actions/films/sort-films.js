@@ -6,6 +6,12 @@ function sortingInProgress() {
   };
 }
 
+function sortingSuccess() {
+  return {
+    type: C.FILMS_SORTED
+  };
+}
+
 function sortingFail(err) {
   return {
     type: C.FILMS_SORTED_FAIL,
@@ -20,11 +26,9 @@ export function sortFilms(films) {
     }
     dispatch(sortingInProgress());
     films.sort((a, b) => {
-      return (a.addedAt >= b.addedAt)
+      return (a.addedAt >= b.addedAt);
     }).reverse();
-    dispatch({
-      type: C.FILMS_SORTED
-    });
+    dispatch(sortingSuccess());
     return films;
-  }
+  };
 }

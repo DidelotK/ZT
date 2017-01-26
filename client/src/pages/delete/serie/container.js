@@ -13,7 +13,7 @@ import {deleteSerie} from '../../../actions/series/delete-serie';
         dispatch(deleteSerie(serie.id));
         dispatch(reset('delete_serie'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

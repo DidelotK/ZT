@@ -1,7 +1,7 @@
 import * as C from '../constants/films';
 
 const initialState = {
-  films: null,
+  films: [],
   isFetching: false,
   isSorting: false,
   isCreating: false,
@@ -19,10 +19,20 @@ const films = (state = initialState, action) => {
       };
     }
     case C.FILMS_FULFILLED: {
+      const filmsId = state.films.map(film => film.id);
+
+      const films = state.films.slice(0);
+      if (action.payload) {
+        action.payload.forEach(film => {
+          if (filmsId.indexOf(film.id) === -1) {
+            films.push(film);
+          }
+        });
+      }
       return {
         ...state,
         isFetching: false,
-        films: action.payload,
+        films,
         error: null
       };
     }
@@ -52,7 +62,7 @@ const films = (state = initialState, action) => {
         ...state,
         isSorting: false,
         error: action.payload
-      }
+      };
     }
     // CREATE FILM
     case C.FILM_CREATE: {
@@ -87,7 +97,12 @@ const films = (state = initialState, action) => {
     case C.FILM_UPDATE_SUCCESS: {
       const films = state.films.map(film => {
         if (film.id === action.payload.id) {
-          return action.payload;
+          for(let k in action.payload) {
+            if(action.payload.hasOwnProperty(k)) {
+              film[k]=action.payload[k];
+            }
+          }
+
         }
         return film;
       });
@@ -114,7 +129,7 @@ const films = (state = initialState, action) => {
     }
     case C.FILM_DELETE_SUCCESS: {
       const films = state.films.filter(film => {
-        return film.id !== action.payload.id;
+        return film.id !== action.payload;
       });
       return {
         ...state,

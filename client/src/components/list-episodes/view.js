@@ -15,7 +15,7 @@ class View extends Component {
         <div>
           No episode
         </div>
-      )
+      );
     }
     const saisons = [];
     episodes.forEach(episodes => {
@@ -49,7 +49,7 @@ class View extends Component {
             </Table.Cell>
             <Table.Cell>
               <Modal
-                trigger={<Button color='red' size='small'>DOWNLOAD</Button>}>
+                trigger={<Button color="red" size="small">DOWNLOAD</Button>}>
                 <Modal.Header>Download</Modal.Header>
                 <Modal.Content>
                   <DownloadBar links={episode.downloadLinks}/>
@@ -63,7 +63,7 @@ class View extends Component {
       content.push(
         <div key={content.length}>
           <h2 styleName="title">Saison {saison}</h2>
-          <Table styleName='table'>
+          <Table styleName="table">
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Number</Table.HeaderCell>
@@ -77,7 +77,7 @@ class View extends Component {
             </Table.Body>
           </Table>
         </div>
-      )
+      );
     });
 
     return (

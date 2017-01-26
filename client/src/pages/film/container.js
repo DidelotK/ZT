@@ -10,7 +10,7 @@ import {getFilm} from '../../actions/films/get-film';
       getFilmAction: id => {
         return dispatch(getFilm(id));
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {

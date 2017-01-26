@@ -5,16 +5,16 @@ import View from './view';
 import {getSeries} from '../../actions/series/get-series';
 
 @connect(store => {
-    return {
-      series: store.series.series
-    };
-  },
+  return {
+    series: store.series.series
+  };
+},
   dispatch => {
     return {
       getSeriesAction: () => {
         return dispatch(getSeries());
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {

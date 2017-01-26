@@ -7,11 +7,11 @@ import {getFilms} from '../../actions/films/get-films';
 import {getSeries} from '../../actions/series/get-series';
 
 @connect(store => {
-    return {
-      films: store.films.films,
-      series: store.series.series
-    }
-  },
+  return {
+    films: store.films.films,
+    series: store.series.series
+  };
+},
   dispatch => {
     return {
       getFilmsAction: () => {
@@ -23,7 +23,7 @@ import {getSeries} from '../../actions/series/get-series';
       redirect: path => {
         return dispatch(push(path));
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {

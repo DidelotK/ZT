@@ -4,28 +4,37 @@ import * as api from '../api';
 import * as C from '../../constants/user';
 import CONFIG from '../../../config/default.json';
 
-function registerRequest() {
+function registerInProgress() {
   return {
     type: C.REGISTER_REQUEST
-  }
+  };
 }
+
+function registerSuccess(user) {
+  return {
+    type: C.REGISTER_ACCEPTED,
+      payload: user
+  };
+}
+
+function registerError(error) {
+  return {
+    type: C.REGISTER_REJECTED,
+    payload: error
+  };
+}
+
 export function register(creds) {
   return dispatch => {
-    dispatch(registerRequest());
+    dispatch(registerInProgress());
     return api.register(creds)
       .then(res => {
         localStorage.token = res.data.accessToken;
-        dispatch({
-          type: C.REGISTER_ACCEPTED,
-          payload: res.data
-        });
-        dispatch(push(CONFIG['redirectRouteAfterLogin']));
+        dispatch(registerSuccess(res.data));
+        dispatch(push(CONFIG.redirectRouteAfterLogin));
       })
       .catch(() => {
-        dispatch({
-          type: C.REGISTER_REJECTED,
-          payload: 'Email already taken'
-        })
+        dispatch(registerError('Email already taken'));
       });
-  }
+  };
 }

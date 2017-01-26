@@ -1,46 +1,42 @@
 import * as api from '../api';
-import * as C from '../../constants/films';
-import {getFilm} from './get-film';
+import * as C from '../../constants/episodes';
+import {getEpisode} from './get-episode';
 import {deleteLink} from '../links/delete-link';
 
 function deleteInProgress() {
   return {
-    type: C.FILM_DELETE
+    type: C.EPISODE_DELETE
   };
 }
 
-function deleteSuccess(filmId) {
+function deleteSuccess(episodeId) {
   return {
-    type: C.FILM_DELETE_SUCCESS,
-    payload: filmId
+    type: C.EPISODE_DELETE_SUCCESS,
+    payload: episodeId
   };
 }
 
 function deleteError(error) {
   return {
-    type: C.FILM_DELETE_ERROR,
+    type: C.EPISODE_DELETE_ERROR,
     payload: error
   };
 }
 
-export function deleteFilm(_id) {
+export function deleteEpisode(_id) {
   return dispatch => {
-    let film;
+    let episode;
     const filter = {simple: {_id}};
-    return dispatch(getFilm(filter))
-      .then(_film => {
-        film = _film;
-        if (!film) {
-          return dispatch(deleteError('No film to delete'));
-        }
+    return getEpisode(filter)
+      .then(episode => {
         dispatch(deleteInProgress());
-        return api.deleteRessource('films', film.id);
+        return api.deleteRessource('episodes', episode.id);
       })
       .then(() => {
-        if (!film.downloadLinks || !film.downloadLinks.length) {
+        if (!episode.downloadLinks || !episode.downloadLinks.length) {
           return Promise.resolve();
         }
-        const linksId = film.downloadLinks.map(link => {
+        const linksId = episode.downloadLinks.map(link => {
           return link.id;
         });
         if (!linksId || !linksId.length) {

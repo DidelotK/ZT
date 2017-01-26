@@ -6,13 +6,13 @@ import Form from './form';
 import {getSeries} from '../../../actions/series/get-series';
 
 @connect(store => {
-    const selector = formValueSelector('add_episode');
-    return {
-      isSerieSelected: selector(store, 'serieSelected') || false,
-      series: store.series.series,
-      user: store.user
-    }
-  },
+  const selector = formValueSelector('add_episode');
+  return {
+    isSerieSelected: selector(store, 'serieSelected') || false,
+    series: store.series.series,
+    user: store.user
+  };
+},
   dispatch => {
     return {
       getSeriesAction: () => {

@@ -6,7 +6,7 @@ export const validate = values => {
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
   return errors;

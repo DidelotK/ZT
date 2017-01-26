@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 import DocumentTitle from 'react-document-title';
-import {Grid, Image} from 'semantic-ui-react'
+import {Grid, Image} from 'semantic-ui-react';
 
 import PosterArea from '../../components/poster-area/container';
 import styles from './styles.css';
@@ -10,17 +10,17 @@ import styles from './styles.css';
 class View extends Component {
   render() {
     return (
-      <DocumentTitle title='Home'>
-        <div styleName='page'>
+      <DocumentTitle title="Home">
+        <div styleName="page">
           <h1 styleName="center">Zone Téléchargement</h1>
           <Grid>
             <Grid.Row>
               <Grid.Column width={3}>
                 <Image
-                  src='/assets/images/logo.jpg' />
+                  src="/assets/images/logo.jpg" />
               </Grid.Column>
-              <Grid.Column width={13} styleName='container'>
-                <div styleName='description'>
+              <Grid.Column width={13} styleName="container">
+                <div styleName="description">
                   <h2>Zone téléchargement is BACK</h2>
                   <p>
                     <b>Zone téléchargement</b>
@@ -53,23 +53,23 @@ class View extends Component {
               <Grid.Column width={10}>
                 <h2>
                   <Image styleName="imgTitles"
-                         src='http://s3.amazonaws.com/libapps/accounts/89359/images/film-reel-and-clapperboard.jpg'/>
+                    src="http://s3.amazonaws.com/libapps/accounts/89359/images/film-reel-and-clapperboard.jpg"/>
                   Latest Movies
                 </h2>
                 <PosterArea
                   media={this.props.films}
-                  typeMedia='film'
+                  typeMedia="film"
                   maxDisplay={8}
                 />
                 <hr/>
                 <h2>
                   <Image styleName="imgTitles"
-                         src='http://iip.lu/wp-content/uploads/sites/156/2016/04/15700070751_88d83d38fd_o.png'/>
+                    src="http://iip.lu/wp-content/uploads/sites/156/2016/04/15700070751_88d83d38fd_o.png"/>
                   Latest Series
                 </h2>
                 <PosterArea
                   media={this.props.series}
-                  typeMedia='serie'
+                  typeMedia="serie"
                   maxDisplay={8}
                 />
               </Grid.Column>

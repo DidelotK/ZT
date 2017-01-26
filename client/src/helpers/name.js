@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 class Helper extends Component {
   prepareName(fullname) {
-    if (fullname.length > 15) {
-      fullname = fullname.substring(0,15);
+    if (fullname && fullname.length > 15) {
+      fullname = fullname.substring(0, 15);
       return `${fullname}..`;
     }
     return fullname;
@@ -19,4 +19,4 @@ class Helper extends Component {
   }
 }
 
-export default Helper
+export default Helper;

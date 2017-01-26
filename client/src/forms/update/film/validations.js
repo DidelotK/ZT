@@ -42,12 +42,14 @@ export const validate = values => {
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
   if (values.actors) {
     const numberActors = values.actors.split(/\r?\n/)
-      .filter(actor => {return actor !== ''})
+      .filter(actor => {
+        return actor !== '';
+      })
       .length;
     if (numberActors < 3) {
       errors.actors = 'Need at least 3 actors';
@@ -72,5 +74,5 @@ export const asyncValidate = (values, dispatch) => {
     .catch(() => {
       errors.filmSelected = 'No film found';
       return errors;
-    })
+    });
 };

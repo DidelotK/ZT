@@ -12,7 +12,7 @@ import View from './view';
         // dispatch(updateEpisode(episode));
         // dispatch(reset('update_episode'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

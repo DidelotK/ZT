@@ -2,10 +2,24 @@ import {FilmSerializer} from '../../serializers/film';
 import * as api from '../api';
 import * as C from '../../constants/films';
 
-function fetchFilm() {
+function fetchInProgress() {
   return {
     type: C.FILM_FETCH
-  }
+  };
+}
+
+function fetchFulfilled(film) {
+  return {
+    type: C.FILM_FULFILLED,
+    payload: film
+  };
+}
+
+function fetchError(error) {
+  return {
+    type: C.FILM_ERROR,
+    payload: error
+  };
 }
 
 function cleanFilm(film) {
@@ -26,12 +40,9 @@ function filmsDeserialize(dispatch, films, links) {
   return FilmSerializer.deserialize(films)
     .then(filmsDeserialized => {
       const film = cleanFilm(filmsDeserialized[0]);
-      dispatch({
-        type: C.FILM_FULFILLED,
-        payload: film
-      });
+      dispatch(fetchFulfilled(film));
       return film;
-    })
+    });
 }
 
 function getFilmLinks(films) {
@@ -49,7 +60,7 @@ export function getFilm(filter) {
   return dispatch => {
     let films;
     let links;
-    dispatch(fetchFilm());
+    dispatch(fetchInProgress());
     return api.getRessource('films', filter, 'uploader')
       .then(res => {
         films = res.data;
@@ -58,18 +69,15 @@ export function getFilm(filter) {
         }
         return getFilmLinks(films)
           .then(res => {
-            if (res && res.data)  {
+            if (res && res.data) {
               links = res.data;
             }
             return filmsDeserialize(dispatch, films, links);
           });
       })
       .catch(err => {
-        dispatch({
-          type: C.FILM_ERROR,
-          payload: err.error
-        });
+        dispatch(fetchError(err));
         return null;
       });
-  }
+  };
 }

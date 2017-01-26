@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 
 class Helper extends Component {
   convertDate(inputFormat) {
-    function pad(s) {return (s < 10) ? '0' + s : s;}
+    function pad(s) {
+      return (s < 10) ? '0' + s : s;
+    }
     const d = new Date(inputFormat);
-    return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+    return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/');
   }
   render() {
     const date = this.props.date;
@@ -17,4 +19,4 @@ class Helper extends Component {
   }
 }
 
-export default Helper
+export default Helper;

@@ -31,50 +31,54 @@ class View extends Component {
         <div>
           <h2>
             <Image styleName="imgTitles"
-                   src='http://s3.amazonaws.com/libapps/accounts/89359/images/film-reel-and-clapperboard.jpg'/>
+              src="http://s3.amazonaws.com/libapps/accounts/89359/images/film-reel-and-clapperboard.jpg"/>
             Movies
           </h2>
           <PosterArea
             media={this.props.films}
-            typeMedia='film'
+            typeMedia="film"
             maxDisplay={8}
           />
         </div>
-      )
+      );
     }
     if (this.state.showSeries && this.props.series.length) {
       series = (
         <div>
           <h2>
             <Image styleName="imgTitles"
-                   src='http://iip.lu/wp-content/uploads/sites/156/2016/04/15700070751_88d83d38fd_o.png'/>
+              src="http://iip.lu/wp-content/uploads/sites/156/2016/04/15700070751_88d83d38fd_o.png"/>
             Series
           </h2>
           <PosterArea
             media={this.props.series}
-            typeMedia='serie'
+            typeMedia="serie"
             maxDisplay={8}
           />
         </div>
-      )
+      );
     }
     if (films && series) {
-      separator = <div><hr/></div>
+      separator = <div><hr/></div>;
     }
     return (
-      <DocumentTitle title='Home'>
-        <div styleName='page'>
+      <DocumentTitle title="Home">
+        <div styleName="page">
           <h1 styleName="center">Results for: {this.props.search}</h1>
           <Message floating>
             <div styleName="select-choice-area">
               <Checkbox toggle styleName="checkbox"
-                        label='Films'
-                        defaultChecked={true}
-                        onChange={() => {this.toogleShowFilms();}}/>
+                label="Films"
+                defaultChecked={true}
+                onChange={() => {
+                  this.toogleShowFilms();
+                }}/>
               <Checkbox toggle
-                        label='Series'
-                        defaultChecked={true}
-                        onChange={() => {this.toogleShowSeries();}}/>
+                label="Series"
+                defaultChecked={true}
+                onChange={() => {
+                  this.toogleShowSeries();
+                }}/>
             </div>
           </Message>
           <Grid>

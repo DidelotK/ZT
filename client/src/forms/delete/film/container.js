@@ -5,10 +5,10 @@ import Form from './form';
 import {getFilms} from '../../../actions/films/get-films';
 
 @connect(store => {
-    return {
-      films: store.films.films
-    }
-  },
+  return {
+    films: store.films.films
+  };
+},
   dispatch => {
     return {
       getFilmsAction: () => {

@@ -6,13 +6,13 @@ import Form from './form';
 import {getSeries} from '../../../actions/series/get-series';
 
 @connect(store => {
-    const selector = formValueSelector('update_serie');
-    return {
-      isSerieSelected: selector(store, 'name') || false,
-      posterLink: selector(store, 'posterLink') || null,
-      series: store.series.series
-    }
-  },
+  const selector = formValueSelector('update_serie');
+  return {
+    isSerieSelected: selector(store, 'name') || false,
+    posterLink: selector(store, 'posterLink') || null,
+    series: store.series.series
+  };
+},
   dispatch => {
     return {
       getSeriesAction: () => {

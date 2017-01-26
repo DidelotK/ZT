@@ -6,12 +6,19 @@ function sortingInProgress() {
   };
 }
 
+function sortingSuccess() {
+  return {
+    type: C.SERIES_SORTED
+  };
+}
+
 function sortingFail(err) {
   return {
     type: C.SERIES_SORTED_FAIL,
     payload: err
   };
 }
+
 export function sortSeries(series) {
   return dispatch => {
     if (!series) {
@@ -19,11 +26,9 @@ export function sortSeries(series) {
     }
     dispatch(sortingInProgress());
     series.sort((a, b) => {
-      return (a.addedAt >= b.addedAt)
+      return (a.addedAt >= b.addedAt);
     }).reverse();
-    dispatch({
-      type: C.SERIES_SORTED
-    });
+    dispatch(sortingSuccess());
     return series;
-  }
+  };
 }

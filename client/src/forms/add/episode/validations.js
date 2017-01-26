@@ -12,7 +12,7 @@ export const validate = values => {
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
   return errors;
@@ -34,5 +34,5 @@ export const asyncValidate = (values, dispatch) => {
     .catch(() => {
       errors.serieSelected = 'No serie found';
       return errors;
-    })
+    });
 };

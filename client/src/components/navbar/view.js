@@ -31,13 +31,17 @@ class View extends Component {
     if (isAuthenticated) {
       profile = (
         <Menu.Item active={location === '/profile'}
-                   name='Profile'
-                   onClick={() => {this.props.redirect('/profile');}}/>
+          name="Profile"
+          onClick={() => {
+            this.props.redirect('/profile');
+          }}/>
       );
       button = (
         <Menu.Item>
-          <Button color='red'
-                  onClick={() => {this.props.logout()}}>
+          <Button color="red"
+            onClick={() => {
+              this.props.logout();
+            }}>
             Logout
           </Button>
         </Menu.Item>
@@ -45,27 +49,35 @@ class View extends Component {
     } else {
       button = (
         <Menu.Item>
-          <Button color='green'
-                  onClick={() => {this.props.redirect('/login');}}>
+          <Button color="green"
+            onClick={() => {
+              this.props.redirect('/login');
+            }}>
             Login
           </Button>
         </Menu.Item>
       );
     }
     return (
-      <div styleName='container'>
+      <div styleName="container">
         <Menu stackable>
           <Menu.Item active={location === '/'}
-                     name='Home'
-                     onClick={() => {this.props.redirect('/');}}/>
+            name="Home"
+            onClick={() => {
+              this.props.redirect('/');
+            }}/>
           <Menu.Item active={location === '/films'}
-                     name='Movies'
-                     onClick={() => {this.props.redirect('/films');}}/>
+            name="Movies"
+            onClick={() => {
+              this.props.redirect('/films');
+            }}/>
           <Menu.Item active={location === '/series'}
-                     name='Series'
-                     onClick={() => {this.props.redirect('/series');}}/>
+            name="Series"
+            onClick={() => {
+              this.props.redirect('/series');
+            }}/>
           {profile}
-          <Menu.Menu position='right'>
+          <Menu.Menu position="right">
             <Menu.Item>
               <SearchInput redirect={this.props.redirect}/>
             </Menu.Item>
@@ -73,7 +85,7 @@ class View extends Component {
           </Menu.Menu>
         </Menu>
       </div>
-    )
+    );
   }
 }
 export default View;

@@ -11,7 +11,7 @@ class View extends Component {
     let cards = [];
     const content = [];
 
-    for (let i=0; i < maxDisplay; i++) {
+    for (let i = 0; i < maxDisplay; i++) {
       const link = `/${typeMedia}/${media[i].id}`;
       cards.push(
         <Grid.Column key={cards.length}>

@@ -2,35 +2,43 @@ import * as api from '../api';
 import * as C from '../../constants/series';
 import {SerieSerializer} from '../../serializers/serie';
 
-function fetchSeries() {
+function fetchInProgress() {
   return {
     type: C.SERIES_FETCH
-  }
+  };
 }
 
-export function getSeries() {
+function fetchSuccess(series) {
+  return {
+    type: C.SERIES_FULFILLED,
+    payload: series
+  };
+}
+
+function fetchError(error) {
+  return {
+    type: C.SERIES_ERROR,
+    payload: error
+  };
+}
+
+export function getSeries(filter) {
   return dispatch => {
-    dispatch(fetchSeries());
-    return api.getRessource('series')
+    dispatch(fetchInProgress());
+    return api.getRessource('series', filter)
       .then(res => {
         const series = {
-          "data": res.data.data
+          data: res.data.data
         };
         return SerieSerializer.deserialize(series);
       })
       .then(series => {
-        dispatch({
-          type: C.SERIES_FULFILLED,
-          payload: series
-        });
+        dispatch(fetchSuccess(series));
         return series;
       })
       .catch(err => {
-        dispatch({
-          type: C.SERIES_ERROR,
-          payload: err.error
-        });
+        dispatch(fetchError(err));
         return null;
       });
-  }
+  };
 }

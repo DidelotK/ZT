@@ -1,7 +1,7 @@
 import * as C from '../constants/series';
 
 const initialState = {
-  series: null,
+  series: [],
   isFetching: false,
   isSorting: false,
   isCreating: false,
@@ -18,10 +18,20 @@ const series = (state = initialState, action) => {
       };
     }
     case C.SERIES_FULFILLED: {
+      const seriesId = state.series.map(serie => serie.id);
+
+      const series = state.series.slice(0);
+      if (action.payload) {
+        action.payload.forEach(serie => {
+          if (seriesId.indexOf(serie.id) === -1) {
+            series.push(serie);
+          }
+        });
+      }
       return {
         ...state,
         isFetching: false,
-        series: action.payload,
+        series,
         error: null
       };
     }
@@ -51,7 +61,7 @@ const series = (state = initialState, action) => {
         ...state,
         isSorting: false,
         error: action.payload
-      }
+      };
     }
     // CREATE SERIE
     case C.SERIE_CREATE: {
@@ -85,7 +95,11 @@ const series = (state = initialState, action) => {
     case C.SERIE_UPDATE_SUCCESS: {
       const series = state.series.map(serie => {
         if (serie.id === action.payload.id) {
-          return action.payload;
+          for(let k in action.payload) {
+            if(action.payload.hasOwnProperty(k)) {
+              serie[k]=action.payload[k];
+            }
+          }
         }
         return serie;
       });

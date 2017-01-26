@@ -6,13 +6,13 @@ import View from './view';
 import {createFilm} from '../../../actions/films/create-film';
 
 @connect(undefined,
-  dispatch=> {
+  dispatch => {
     return {
       createFilmAction: film => {
         dispatch(createFilm(film));
         dispatch(reset('add_film'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

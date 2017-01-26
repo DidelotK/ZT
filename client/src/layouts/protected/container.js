@@ -4,11 +4,11 @@ import {push} from 'react-router-redux';
 
 import Layout from './view';
 
-@connect((store) => {
-    return {
-      user: store.user
-    }
-  }
+@connect(store => {
+  return {
+    user: store.user
+  };
+}
 )
 class Container extends Component {
   componentWillMount() {

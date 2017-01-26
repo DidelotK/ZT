@@ -28,100 +28,100 @@ class Form extends React.Component {
   render() {
     const {handleSubmit, series, isSerieSelected, posterLink} = this.props;
     return (
-      <form onSubmit={handleSubmit} styleName='form'>
+      <form onSubmit={handleSubmit} styleName="form">
         <div>
           <Field name="serieSelected" component={AutoComplete} type="text"
-                 floatingLabelText="Serie to update"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 filter={AutoComplete.caseInsensitiveFilter}
-                 dataSource={series.map(serie => serie.name)}
-                 onNewRequest={() => this.onNewRequest()}
+            floatingLabelText="Serie to update"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
+            filter={AutoComplete.caseInsensitiveFilter}
+            dataSource={series.map(serie => serie.name)}
+            onNewRequest={() => this.onNewRequest()}
           />
         </div>
         {isSerieSelected &&
         <div>
           <div>
             <Field name="name" component={TextField} type="text"
-                   floatingLabelText="New Name"
-                   floatingLabelStyle={floatingLabelStyle}
-                   fullWidth={true}
+              floatingLabelText="New Name"
+              floatingLabelStyle={floatingLabelStyle}
+              fullWidth={true}
             />
           </div>
           <div>
             <Field name="description" component={TextField} type="text"
-                   floatingLabelText="New Description"
-                   floatingLabelStyle={floatingLabelStyle}
-                   multiLine={true}
-                   fullWidth={true}
-                   rows={2}
-                   rowsMax={5}
+              floatingLabelText="New Description"
+              floatingLabelStyle={floatingLabelStyle}
+              multiLine={true}
+              fullWidth={true}
+              rows={2}
+              rowsMax={5}
             />
           </div>
           <div>
             <Field name="posterLink" component={TextField} type="text"
-                   floatingLabelText="New Poster link"
-                   floatingLabelStyle={floatingLabelStyle}
-                   fullWidth={true}
+              floatingLabelText="New Poster link"
+              floatingLabelStyle={floatingLabelStyle}
+              fullWidth={true}
             />
             <Modal trigger={
               <RaisedButton
-                label='Show poster'
-                style={{'width': '25%'}}
+                label="Show poster"
+                style={{width: '25%'}}
                 backgroundColor="grey"
-                type='button'
+                type="button"
               />}
-                   size="small"
+              size="small"
             >
               <Modal.Header>Overview</Modal.Header>
               <Modal.Content>
                 <Image src={posterLink}
-                       fluid/>
+                  fluid/>
               </Modal.Content>
             </Modal>
           </div>
           <div>
             <Field name="productionDate" component={DatePicker}
-                   floatingLabelText="New Production date"
-                   floatingLabelStyle={floatingLabelStyle}
-                   fullWidth={true}
-                   disableYearSelection={false}
-                   format={(value, name) => value === '' ? null : value}
-                   mode="landscape"
+              floatingLabelText="New Production date"
+              floatingLabelStyle={floatingLabelStyle}
+              fullWidth={true}
+              disableYearSelection={false}
+              format={(value, name) => value === '' ? null : value}
+              mode="landscape"
             />
           </div>
           <div>
             <Field name="actors" component={TextField} type="text"
-                   floatingLabelText="New Actors (one line per actor, 3 minimum)"
-                   floatingLabelStyle={floatingLabelStyle}
-                   multiLine={true}
-                   fullWidth={true}
-                   rows={2}
-                   rowsMax={5}
+              floatingLabelText="New Actors (one line per actor, 3 minimum)"
+              floatingLabelStyle={floatingLabelStyle}
+              multiLine={true}
+              fullWidth={true}
+              rows={2}
+              rowsMax={5}
             />
           </div>
           <div>
             <Field name="director" component={TextField} type="text"
-                   floatingLabelText="New Director"
-                   floatingLabelStyle={floatingLabelStyle}
-                   fullWidth={true}
+              floatingLabelText="New Director"
+              floatingLabelStyle={floatingLabelStyle}
+              fullWidth={true}
             />
           </div>
           <div>
             <Field name="country" component={TextField} type="text"
-                   floatingLabelText="New Country"
-                   floatingLabelStyle={floatingLabelStyle}
-                   fullWidth={true}
+              floatingLabelText="New Country"
+              floatingLabelStyle={floatingLabelStyle}
+              fullWidth={true}
             />
           </div>
         </div>
         }
-        <div styleName='button'>
+        <div styleName="button">
           <RaisedButton
-            label='Update'
-            style={{'width': '50%'}}
+            label="Update"
+            style={{width: '50%'}}
             backgroundColor="grey"
-            type='submit'
+            type="submit"
           />
         </div>
       </form>

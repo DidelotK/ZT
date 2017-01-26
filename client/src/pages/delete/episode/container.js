@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-// import {deleteEpisode} from '../../../actions/episode/delete-episode';
+import {deleteEpisode} from '../../../actions/episodes/delete-episode';
 
 @connect(undefined,
   dispatch => {
     return {
-      deleteEpisodeAction: id => {
-        // dispatch(deleteEpisode(id));
+      deleteEpisodeAction: form => {
+        dispatch(deleteEpisode(form.episodeId));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

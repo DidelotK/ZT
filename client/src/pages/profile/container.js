@@ -6,10 +6,10 @@ import View from './view';
 import {loadUser} from '../../actions/user/load-user';
 
 @connect(store => {
-    return {
-      user: store.user
-    };
-  },
+  return {
+    user: store.user
+  };
+},
   dispatch => {
     return {
       loadUserAction: token => {
@@ -18,7 +18,7 @@ import {loadUser} from '../../actions/user/load-user';
       redirect: path => {
         dispatch(push(path));
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {

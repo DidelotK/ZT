@@ -6,13 +6,13 @@ import Form from './form';
 import {getFilms} from '../../../actions/films/get-films';
 
 @connect(store => {
-    const selector = formValueSelector('update_film');
-    return {
-      isFilmSelected: selector(store, 'name') || false,
-      posterLink: selector(store, 'posterLink') || null,
-      films: store.films.films
-    }
-  },
+  const selector = formValueSelector('update_film');
+  return {
+    isFilmSelected: selector(store, 'name') || false,
+    posterLink: selector(store, 'posterLink') || null,
+    films: store.films.films
+  };
+},
   dispatch => {
     return {
       getFilmsAction: () => {
@@ -25,7 +25,7 @@ class Container extends Component {
     super(props);
     this.state = {
       loaded: false,
-      film: null,
+      film: null
     };
   }
   componentWillMount() {

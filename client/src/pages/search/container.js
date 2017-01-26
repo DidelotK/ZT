@@ -6,11 +6,11 @@ import {getFilms} from '../../actions/films/get-films';
 import {getSeries} from '../../actions/series/get-series';
 
 @connect(store => {
-    return {
-      films: store.films.films,
-      series: store.series.series
-    };
-  },
+  return {
+    films: store.films.films,
+    series: store.series.series
+  };
+},
   dispatch => {
     return {
       getFilmsAction: search => {
@@ -35,7 +35,7 @@ import {getSeries} from '../../actions/series/get-series';
         };
         return dispatch(getSeries(filter));
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {
@@ -76,7 +76,7 @@ class Container extends Component {
       );
     }
     const search = routeParams.search;
-    const regex = new RegExp(`.*${search}.*`,'i');
+    const regex = new RegExp(`.*${search}.*`, 'i');
     const films = this.props.films.filter(film => {
       return film.name.match(regex);
     });

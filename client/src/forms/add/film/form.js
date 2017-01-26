@@ -22,94 +22,94 @@ class Form extends React.Component {
   render() {
     const {posterLink, handleSubmit} = this.props;
     return (
-      <form onSubmit={handleSubmit} styleName='form'>
+      <form onSubmit={handleSubmit} styleName="form">
         <div>
           <Field name="name" component={TextField} type="text"
-                 floatingLabelText="Name"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
+            floatingLabelText="Name"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
           />
         </div>
         <div>
           <Field name="description" component={TextField} type="text"
-                 floatingLabelText="Description"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 multiLine={true}
-                 rows={2}
-                 rowsMax={5}
+            floatingLabelText="Description"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
+            multiLine={true}
+            rows={2}
+            rowsMax={5}
           />
         </div>
         <div>
           <Field name="posterLink" component={TextField} type="text"
-                 floatingLabelText="Poster link"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
+            floatingLabelText="Poster link"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
           />
           {posterLink &&
           <Modal trigger={
             <RaisedButton
-              label='Show poster'
-              style={{'width': '25%'}}
+              label="Show poster"
+              style={{width: '25%'}}
               backgroundColor="grey"
-              type='button'
+              type="button"
             />}
-                 size="small">
+            size="small">
             <Modal.Header>Overview</Modal.Header>
             <Modal.Content>
               <Image src={posterLink}
-                     fluid/>
+                fluid/>
             </Modal.Content>
           </Modal>
           }
         </div>
         <div>
           <Field name="productionDate" component={DatePicker}
-                 floatingLabelText="Production date"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 disableYearSelection={false}
-                 format={(value, name) => value === '' ? null : value}
-                 mode="landscape"
+            floatingLabelText="Production date"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
+            disableYearSelection={false}
+            format={(value, name) => value === '' ? null : value}
+            mode="landscape"
           />
         </div>
         <div>
           <Field name="actors" component={TextField} type="text"
-                 floatingLabelText="Actors (one line per actor, 3 minimum)"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 multiLine={true}
-                 rows={2}
-                 rowsMax={5}
+            floatingLabelText="Actors (one line per actor, 3 minimum)"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
+            multiLine={true}
+            rows={2}
+            rowsMax={5}
           />
         </div>
         <div>
           <Field name="director" component={TextField} type="text"
-                 floatingLabelText="Director"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
+            floatingLabelText="Director"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
           />
         </div>
         <div>
           <Field name="country" component={TextField} type="text"
-                 floatingLabelText="Country"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
+            floatingLabelText="Country"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
           />
         </div>
         <div>
           <Field name="length" component={TextField} type="number"
-                 floatingLabelText="Length (min)"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
+            floatingLabelText="Length (min)"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
           />
         </div>
-        <div styleName='button'>
+        <div styleName="button">
           <RaisedButton
-            label='Create'
-            style={{'width': '50%'}}
+            label="Create"
+            style={{width: '50%'}}
             backgroundColor="grey"
-            type='submit'
+            type="submit"
           />
         </div>
       </form>

@@ -5,7 +5,7 @@ import View from './view';
 class Container extends Component {
   render() {
     const {episodes} = this.props;
-    return <View episodes={episodes}/>
+    return <View episodes={episodes}/>;
   }
 }
 

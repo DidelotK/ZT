@@ -16,9 +16,9 @@ class View extends Component {
       return <NotFound type="film"/>;
     }
     return (
-      <DocumentTitle title='Film'>
-        <div styleName='page'>
-          <div styleName='container'>
+      <DocumentTitle title="Film">
+        <div styleName="page">
+          <div styleName="container">
             <h1 styleName="title">{film.name}</h1>
             <hr/>
             <card styleName="film_poster">

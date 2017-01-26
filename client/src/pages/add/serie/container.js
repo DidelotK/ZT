@@ -12,7 +12,7 @@ import {createSerie} from '../../../actions/series/create-serie';
         dispatch(createSerie(serie));
         dispatch(reset('add_serie'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

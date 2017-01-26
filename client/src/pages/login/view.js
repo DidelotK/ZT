@@ -10,9 +10,9 @@ import styles from './styles.css';
 class Login extends Component {
   render() {
     return (
-      <DocumentTitle title='Login'>
-        <div styleName='page'>
-          <div styleName='container'>
+      <DocumentTitle title="Login">
+        <div styleName="page">
+          <div styleName="container">
             <h1>Login</h1>
             <LoginForm onSubmit={this.props.loginHandler}/>
             <div styleName="link">

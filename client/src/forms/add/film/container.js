@@ -6,19 +6,19 @@ import {change} from 'redux-form';
 import Form from './form';
 
 @connect(store => {
-    const selector = formValueSelector('add_film');
-    return {
-      posterLink: selector(store, 'posterLink'),
-      user: store.user
-    }
-  },
+  const selector = formValueSelector('add_film');
+  return {
+    posterLink: selector(store, 'posterLink'),
+    user: store.user
+  };
+},
   dispatch => {
     return {
       setUploaderAction: uploaderId => {
         const uploader = {id: uploaderId, customType: 'users'};
         dispatch(change('add_film', 'uploader', uploader));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {

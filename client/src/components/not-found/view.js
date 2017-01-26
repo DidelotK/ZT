@@ -9,10 +9,10 @@ class View extends Component {
     let {type} = this.props;
     type = type.toUpperCase();
     return (
-      <div styleName='container'>
+      <div styleName="container">
         {type} NOT FOUND
       </div>
-    )
+    );
   }
 }
 export default View;

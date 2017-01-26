@@ -9,9 +9,9 @@ import styles from './styles.css';
 class View extends Component {
   render() {
     return (
-      <DocumentTitle title='Register'>
-        <div styleName='page'>
-          <div styleName='container'>
+      <DocumentTitle title="Register">
+        <div styleName="page">
+          <div styleName="container">
             <h1>Register</h1>
             <RegisterForm onSubmit={this.props.registerHandler}/>
           </div>

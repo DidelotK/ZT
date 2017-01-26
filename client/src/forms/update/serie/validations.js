@@ -1,7 +1,7 @@
 import {change} from 'redux-form';
 import {getSerie} from '../../../actions/series/get-serie';
 
-const resetValues = (dispatch) => {
+const resetValues = dispatch => {
   const formName = 'update_serie';
   dispatch(change(formName, 'id', null));
   dispatch(change(formName, 'name', ''));
@@ -34,16 +34,18 @@ export const validate = values => {
     'productionDate',
     'actors',
     'director',
-    'country',
+    'country'
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
   if (values.actors) {
     const numberActors = values.actors.split(/\r?\n/)
-      .filter(actor => {return actor !== ''})
+      .filter(actor => {
+        return actor !== '';
+      })
       .length;
     if (numberActors < 3) {
       errors.actors = 'Need at least 3 actors';
@@ -68,5 +70,5 @@ export const asyncValidate = (values, dispatch) => {
     .catch(() => {
       errors.serieSelected = 'No serie found';
       return errors;
-    })
+    });
 };

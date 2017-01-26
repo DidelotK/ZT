@@ -5,12 +5,12 @@ export const validate = (values, props) => {
     'name'
   ];
   if (films && films.indexOf(values.name) === -1) {
-    errors.name = 'No film found'
+    errors.name = 'No film found';
   }
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
   return errors;
-}
+};

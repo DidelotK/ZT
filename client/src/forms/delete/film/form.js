@@ -35,24 +35,24 @@ class Form extends React.Component {
   render() {
     const {handleSubmit, films} = this.props;
     return (
-      <form onSubmit={handleSubmit} styleName='form'>
+      <form onSubmit={handleSubmit} styleName="form">
         <div>
           <Field name="name" component={AutoComplete} type="text"
-                 floatingLabelText="Film to delete"
-                 floatingLabelStyle={floatingLabelStyle}
-                 fullWidth={true}
-                 filter={AutoComplete.caseInsensitiveFilter}
-                 dataSource={films.map(film => film.name)}
-                 onNewRequest={name => this.setFilmId(name)}
-                 onUpdateInput={name => this.setFilmId(name)}
+            floatingLabelText="Film to delete"
+            floatingLabelStyle={floatingLabelStyle}
+            fullWidth={true}
+            filter={AutoComplete.caseInsensitiveFilter}
+            dataSource={films.map(film => film.name)}
+            onNewRequest={name => this.setFilmId(name)}
+            onUpdateInput={name => this.setFilmId(name)}
           />
         </div>
-        <div styleName='button'>
+        <div styleName="button">
           <RaisedButton
-            label='Remove'
-            style={{'width': '50%'}}
+            label="Remove"
+            style={{width: '50%'}}
             backgroundColor="grey"
-            type='submit'
+            type="submit"
           />
         </div>
       </form>

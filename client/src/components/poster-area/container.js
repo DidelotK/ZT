@@ -10,7 +10,7 @@ import View from './view';
       redirect: path => {
         dispatch(push(path));
       }
-    }
+    };
   })
 class Container extends Component {
   setMediaPerColumn(max) {
@@ -25,7 +25,7 @@ class Container extends Component {
     if (!maxDisplay || maxDisplay > mediaLength) {
       return mediaLength;
     }
-    return maxDisplay
+    return maxDisplay;
   }
   render() {
     const {media, typeMedia} = this.props;

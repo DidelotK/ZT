@@ -6,10 +6,10 @@ import View from './view';
 import {logout} from '../../actions/user/auth';
 
 @connect(store => {
-    return {
-      user: store.user
-    };
-  },
+  return {
+    user: store.user
+  };
+},
   dispatch => {
     return {
       logoutAction: () => {
@@ -18,15 +18,15 @@ import {logout} from '../../actions/user/auth';
       redirect: path => {
         dispatch(push(path));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {
     const {logoutAction, redirect, location, user} = this.props;
     return <View logout={logoutAction}
-                   redirect={redirect}
-                   location={location}
-                   isAuthenticated={user.isAuthenticated}/>
+      redirect={redirect}
+      location={location}
+      isAuthenticated={user.isAuthenticated}/>;
   }
 }
 

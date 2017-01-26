@@ -2,10 +2,24 @@ import * as api from '../api';
 import * as C from '../../constants/series';
 import {SerieSerializer} from '../../serializers/serie';
 
-function fetchSerie() {
+function fetchInProgress() {
   return {
     type: C.SERIE_FETCH
-  }
+  };
+}
+
+function fetchSuccess(serie) {
+  return {
+    type: C.SERIE_FULFILLED,
+    payload: serie
+  };
+}
+
+function fetchError(error) {
+  return {
+    type: C.SERIE_ERROR,
+    payload: error
+  };
 }
 
 function cleanSerie(serie) {
@@ -40,10 +54,7 @@ function seriesDeserialize(dispatch, series, episodes, links) {
   return SerieSerializer.deserialize(series)
     .then(seriesDeserialized => {
       const serie = cleanSerie(seriesDeserialized[0]);
-      dispatch({
-        type: C.SERIE_FULFILLED,
-        payload: serie
-      });
+      dispatch(fetchSuccess(serie));
       return serie;
     });
 }
@@ -79,7 +90,7 @@ export function getSerie(filter) {
   let episodes;
   let links;
   return dispatch => {
-    dispatch(fetchSerie());
+    dispatch(fetchInProgress());
     return api.getRessource('series', filter, 'uploader')
       .then(res => {
         series = res.data;
@@ -89,7 +100,7 @@ export function getSerie(filter) {
         return getSerieEpisodes(series)
           .then(res => {
             if (res && res.data) {
-              episodes = res.data
+              episodes = res.data;
             }
             if (!episodes || !episodes.data[0]) {
               return seriesDeserialize(dispatch, series, null, null);
@@ -101,14 +112,11 @@ export function getSerie(filter) {
                 }
                 return seriesDeserialize(dispatch, series, episodes, links);
               });
-          })
+          });
       })
       .catch(err => {
-        dispatch({
-          type: C.SERIE_ERROR,
-          payload: err.error
-        });
+        dispatch(fetchError(err));
         return null;
       });
-  }
+  };
 }

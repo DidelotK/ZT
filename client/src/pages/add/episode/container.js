@@ -6,14 +6,14 @@ import View from './view';
 import {createEpisode} from '../../../actions/episodes/create-episode';
 
 @connect(undefined,
-  dispatch=> {
+  dispatch => {
     return {
       createEpisodeAction: episode => {
         delete episode.serieSelected;
         dispatch(createEpisode(episode));
         dispatch(reset('add_episode'));
       }
-    }
+    };
   })
 class Container extends Component {
   render() {
